@@ -17,6 +17,7 @@ class Teacher::LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
   end
+  
   private
 
   def lesson_params
