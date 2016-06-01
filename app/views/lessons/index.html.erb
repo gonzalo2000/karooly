@@ -5,18 +5,22 @@
   <hr>
 
   <% @lessons.each do |lesson| %>
-    <h2><%= lesson.title %></h2>
+    <h2><%= link_to lesson.title, lesson_path(lesson) %></h2>
     <br>
     <div class="col-xs-12">
       <i>by ###USER### (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
     </div>
+    
     <br>
+    <br>
+
     <div class="col-xs-12 col-sm-8">
       <%= lesson.description %>
     </div>
     <div class="col-xs-12 col-sm-4 text-center">
-      <%= link_to 'Button', '#', class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'View Lesson', lesson_path(lesson), class: 'btn btn-primary btn-lg' %>
     </div>
     <br class="clear">
+    <br>
   <% end %>
 </div>
