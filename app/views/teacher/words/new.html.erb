@@ -4,7 +4,8 @@
   <h1>Add a Word</h1>
   <%= simple_form_for @word, url: teacher_lesson_words_path(current_lesson) do |f| %>
     <%= f.input :term %><br>
-    <%= f.input :reference %>
+    <%= f.input :reference %><br>
+    <%= f.input :image %>
     <br>
     <%= f.submit "Add word", class: 'btn btn-primary btn-large' %>
   <% end %>
