@@ -17,6 +17,10 @@
 
   <h3>Vocabulary in This Lesson</h3>
 
+  <% if @lesson.words.empty? %>
+    <i>(this lesson doesn't have any vocabulary yet!)</i>
+  <% end %>
+  
   <ul>
     <% @lesson.words.each do |word| %>
       <li>
