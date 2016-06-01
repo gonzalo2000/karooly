@@ -7,11 +7,18 @@
   <p class="text-center"><%= @lesson.description %></p>
   <br>
   <div class="text-center">
-    <%= link_to 'Student View', lesson_path(@lesson), class: 'btn btn-warning text' %>
+    <%= link_to 'Student View', lesson_path(@lesson), class: 'btn btn-warning' %>
+    <%= link_to 'My Lessons', '#', class: 'btn btn-success' %>
+    <%= link_to 'All Lessons', lessons_path, class: 'btn btn-info' %>
   </div>
   
   <hr>
-
+  
   <h3>Vocabulary in This Lesson</h3>
+
+  <%= link_to 'Add words', '#', class: 'btn btn-primary btn-lg pull-right' %>
+  
+  <br class="clear">
+
   ###list vocab
 </div>
