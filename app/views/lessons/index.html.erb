@@ -6,7 +6,17 @@
 
   <% @lessons.each do |lesson| %>
     <h2><%= lesson.title %></h2>
-    <i>by <%= lesson.user.email %> (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
-    <p><%= lesson.description %></p>
+    <br>
+    <div class="col-xs-12">
+      <i>by ###USER### (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
+    </div>
+    <br>
+    <div class="col-xs-12 col-sm-8">
+      <%= lesson.description %>
+    </div>
+    <div class="col-xs-12 col-sm-4 text-center">
+      <%= link_to 'Button', '#', class: 'btn btn-primary btn-lg' %>
+    </div>
+    <br class="clear">
   <% end %>
 </div>
