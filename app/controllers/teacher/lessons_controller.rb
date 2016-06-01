@@ -1,5 +1,6 @@
 class Teacher::LessonsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_authorized_for_current_lesson, only: [:show]
 
   def new
     @lesson = Lesson.new
@@ -19,8 +20,17 @@ class Teacher::LessonsController < ApplicationController
   end
   
   private
+    def require_authorized_for_current_lesson
+      if current_lesson.user != current_user
+        render text: "Unauthorized", status: :unauthorized
+      end
+    end
 
-  def lesson_params
-    params.require(:lesson).permit(:title, :description, :subject, :difficulty)
-  end
+    def current_lesson
+      @current_lesson ||= Lesson.find(params[:id])
+    end
+
+    def lesson_params
+      params.require(:lesson).permit(:title, :description, :subject, :difficulty)
+    end
 end

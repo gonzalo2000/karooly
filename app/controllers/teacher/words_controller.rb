@@ -8,7 +8,11 @@ class Teacher::WordsController < ApplicationController
 
   def create
     @word = current_lesson.words.create(word_params)
-    redirect_to teacher_lesson_path(current_lesson)
+    if @word.valid?
+      redirect_to teacher_lesson_path(current_lesson)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
