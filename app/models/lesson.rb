@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
   belongs_to :user
-  has_many :words
+  has_many :words, dependent: :delete
 
   validates :title, presence: true, length: { maximum: 55 }
   validates :description, presence: true, length: { maximum: 500 }
