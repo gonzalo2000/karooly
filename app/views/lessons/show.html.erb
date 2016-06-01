@@ -16,5 +16,14 @@
   <hr>
 
   <h3>Vocabulary in This Lesson</h3>
-  <p>###List vocab</p>
+
+  <ul>
+    <% @lesson.words.each do |word| %>
+      <li>
+        <%= link_to word.term, word_path(word) %> means <i><%= word.reference %></i>
+      </li>
+      <br>
+    <% end %>
+  </ul>
+
 </div>
