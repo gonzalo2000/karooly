@@ -21,6 +21,7 @@
     <% @lesson.words.each do |word| %>
       <li>
         <%= link_to word.term, word_path(word) %> means <i><%= word.reference %></i>
+        <%= image_tag word.image_url(:thumb) if word.image? %>
       </li>
       <br>
     <% end %>
