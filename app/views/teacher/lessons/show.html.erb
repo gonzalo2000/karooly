@@ -16,9 +16,15 @@
   
   <h3>Vocabulary in This Lesson</h3>
 
-  <%= link_to 'Add words', '#', class: 'btn btn-primary btn-lg pull-right' %>
+  <%= link_to 'Add word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-primary btn-lg pull-right' %>
   
   <br class="clear">
 
-  ###list vocab
+  <ul>
+    <% @lesson.words.each do |word| %>
+      <li>
+        <b><%= word.term %></b> means <%= word.reference %> in English :)
+      </li>
+    <% end %>
+  </ul>
 </div>
