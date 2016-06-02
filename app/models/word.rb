@@ -6,4 +6,6 @@ class Word < ActiveRecord::Base
 
   validates :term, presence: true, length: { maximum: 55 }
   validates :reference, presence: true, length: { maximum: 55 }
+  validates :image, presence: true
+  validates :sound, presence: true
 end
