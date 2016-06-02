@@ -5,7 +5,8 @@
   <%= simple_form_for @word, url: teacher_lesson_words_path(current_lesson) do |f| %>
     <%= f.input :term %><br>
     <%= f.input :reference %><br>
-    <%= f.input :image %>
+    <%= f.input :image %><br>
+    <%= f.input :sound %>
     <br>
     <%= f.submit "Add word", class: 'btn btn-primary btn-large' %>
   <% end %>

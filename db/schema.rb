@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601182713) do
+ActiveRecord::Schema.define(version: 20160601232544) do
 
   create_table "lessons", force: :cascade do |t|
     t.string   "title"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160601182713) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
+    t.string   "sound"
   end
 
   add_index "words", ["lesson_id"], name: "index_words_on_lesson_id"

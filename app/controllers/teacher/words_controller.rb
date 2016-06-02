@@ -29,6 +29,6 @@ class Teacher::WordsController < ApplicationController
     end
 
     def word_params
-      params.require(:word).permit(:term, :reference, :image)
+      params.require(:word).permit(:term, :reference, :image, :sound)
     end
 end
