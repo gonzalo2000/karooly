@@ -7,8 +7,12 @@
 
   <p class="text-center">(means <i><%= current_word.reference %></i>)</p><br>
 
+  <!-- bug: button stops working when clicking away from the page. Works again upon reloading-->
   <div class="text-center">
-    <%= audio_tag current_word.sound, autoplay: true, controls: true %>
+    <%= audio_tag current_word.sound, autoplay: true, class: "audio-play" %>
+    <button type="button" class="btn btn-default btn-lg", id="audioButton">
+      <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+    </button>
   </div>
 
   <br>

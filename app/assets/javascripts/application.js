@@ -15,3 +15,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+jQuery(document).ready(function() {
+$("#audioButton").on("click", function() {
+        $(".audio-play")[0].currentTime = 0;
+        return $(".audio-play")[0].play();
+      });
+});
