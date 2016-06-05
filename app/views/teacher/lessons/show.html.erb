@@ -7,6 +7,7 @@
   <p class="text-center"><%= @lesson.description %></p>
   <br>
   <div class="text-center">
+    <%= link_to 'Edit Lesson', edit_teacher_lesson_path(@lesson), class: 'btn btn-primary' %>
     <%= link_to 'Student View', lesson_path(@lesson), class: 'btn btn-warning' %>
     <%= link_to 'My Lessons', '#', class: 'btn btn-success' %>
     <%= link_to 'All Lessons', lessons_path, class: 'btn btn-info' %>

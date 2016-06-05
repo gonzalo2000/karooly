@@ -1,9 +1,17 @@
 class Teacher::LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_authorized_for_current_lesson, only: [:show]
+  before_action :require_authorized_for_current_lesson, only: [:show, :edit, :update]
+
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
 
   def new
     @lesson = Lesson.new
+  end
+
+  def edit
+    @lesson = Lesson.find(params[:id])
   end
 
   def create
@@ -15,8 +23,9 @@ class Teacher::LessonsController < ApplicationController
     end
   end
 
-  def show
-    @lesson = Lesson.find(params[:id])
+  def update
+    current_lesson.update_attributes(lesson_params)
+    redirect_to teacher_lesson_path(current_lesson)
   end
   
   private
