@@ -29,8 +29,10 @@
   <ul>
     <% @lesson.words.each do |word| %>
       <li>
-        <b><%= word.term %></b> means <i><%= word.reference %></i> :)
+        <b><%= word.term %></b> --> <i><%= word.reference %></i> &nbsp
+        <%= link_to 'Edit', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %>
       </li>
+      <br>
     <% end %>
   </ul>
 </div>

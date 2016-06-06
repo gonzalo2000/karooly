@@ -6,6 +6,10 @@ class Teacher::WordsController < ApplicationController
     @word = Word.new
   end
 
+  def edit
+    @word = Word.find(params[:id])
+  end
+
   def create
     @word = current_lesson.words.create(word_params)
     if @word.valid?
@@ -13,6 +17,12 @@ class Teacher::WordsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    @word = Word.find(params[:id])
+    @word.update_attributes(word_params)
+    redirect_to teacher_lesson_path(current_lesson)
   end
 
   private

@@ -24,7 +24,7 @@ class Teacher::LessonsController < ApplicationController
   end
 
   def update
-    current_lesson.update_attributes(lesson_params)
+    @lesson = current_lesson.update_attributes(lesson_params)
     redirect_to teacher_lesson_path(current_lesson)
   end
   
