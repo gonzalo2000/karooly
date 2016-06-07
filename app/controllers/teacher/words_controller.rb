@@ -29,6 +29,13 @@ class Teacher::WordsController < ApplicationController
     end
   end
 
+  def destroy
+    @word = Word.find(params[:id])
+    @word.destroy
+
+    redirect_to teacher_lesson_path(current_lesson)
+  end
+
   private
 
     def require_authorized_for_current_lesson

@@ -9,18 +9,19 @@
   <div class="text-center">
     <%= link_to 'Edit Lesson', edit_teacher_lesson_path(@lesson), class: 'btn btn-primary' %>
     <%= link_to 'Student View', lesson_path(@lesson), class: 'btn btn-warning' %>
-    <%= link_to 'My Lessons', '#', class: 'btn btn-success' %>
-    <%= link_to 'All Lessons', lessons_path, class: 'btn btn-info' %>
+    <%= link_to 'My Lessons', '#', class: 'btn btn-info' %>
   </div>
   
   <hr>
   
   <h3>Vocabulary in This Lesson</h3>
-
-  <h4>#### will need edit options</h4>
-  <%= link_to 'Add word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-primary btn-lg pull-right' %>
+  <br>
+  <div class="text-center">
+    <%= link_to 'Add word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-success btn-lg' %>
+  </div>
   
   <br class="clear">
+  <br>
   
   <% if @lesson.words.empty? %>
     <i>(this lesson doesn't have any vocabulary yet!)</i>
@@ -30,7 +31,11 @@
     <% @lesson.words.each do |word| %>
       <li>
         <b><%= word.term %></b> --> <i><%= word.reference %></i> &nbsp
-        <%= link_to 'Edit', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %>
+        <%= link_to 'Edit Word', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %>
+        <%= link_to 'Delete Word', teacher_lesson_word_path(@lesson, word), 
+            method: :delete,
+            data: { confirm: 'This will permanently delete this word. Are you sure?' },
+            class: 'btn btn-danger' %>
       </li>
       <br>
     <% end %>
