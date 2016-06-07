@@ -24,8 +24,12 @@ class Teacher::LessonsController < ApplicationController
   end
 
   def update
-    current_lesson.update_attributes(lesson_params)
-    redirect_to teacher_lesson_path(current_lesson)
+    @lesson = Lesson.find(params[:id])
+    if @lesson.update(lesson_params)
+      redirect_to teacher_lesson_path(current_lesson)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
   
   private

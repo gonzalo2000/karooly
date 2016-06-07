@@ -21,8 +21,12 @@ class Teacher::WordsController < ApplicationController
 
   def update
     @word = Word.find(params[:id])
-    @word.update_attributes(word_params)
-    redirect_to teacher_lesson_path(current_lesson)
+
+    if @word.update(word_params)
+      redirect_to teacher_lesson_path(current_lesson)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

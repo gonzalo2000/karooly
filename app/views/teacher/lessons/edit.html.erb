@@ -4,7 +4,7 @@
 
   <br>
 
-  <%= simple_form_for @lesson, url: teacher_lesson_path do |f| %>
+  <%= simple_form_for @lesson, url: teacher_lesson_path(@lesson), method: :patch do |f| %>
     <%= f.input :title %><br>
     <%= f.input :description %><br>
     <%= f.input :subject %><br>
