@@ -17,7 +17,7 @@
   <h3>Vocabulary in This Lesson</h3>
   <br>
   <div class="text-center">
-    <%= link_to 'Add word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-success btn-lg' %>
+    <%= link_to 'Add a word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-success btn-lg' %>
   </div>
   
   <br class="clear">
@@ -29,9 +29,15 @@
 
   <ul>
     <% @lesson.words.each do |word| %>
-      <li>
-        <b><%= word.term %></b> --> <i><%= word.reference %></i> &nbsp
-        <%= link_to 'Edit Word', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %>
+      <li> 
+        <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
+        
+        <b><%= word.term %></b> &nbsp
+
+        <i>(<%= word.reference %>)</i> &nbsp
+
+        <%= link_to 'Edit Word', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %> &nbsp
+
         <%= link_to 'Delete Word', teacher_lesson_word_path(@lesson, word), 
             method: :delete,
             data: { confirm: 'This will permanently delete this word. Are you sure?' },

@@ -20,7 +20,6 @@
       <% end %>
     </div>
   
-
   <hr>
 
   <h3>Vocabulary in This Lesson</h3>
@@ -32,8 +31,10 @@
   <ul>
     <% @lesson.words.each do |word| %>
       <li>
-        <%= link_to word.term, word_path(word) %> means <i><%= word.reference %></i>
-        <%= image_tag word.image_url(:thumb) if word.image? %>
+        <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
+        <%= link_to word.term, word_path(word) %> &nbsp 
+        <i>(<%= word.reference %>)</i>
+        
       </li>
       <br>
     <% end %>
