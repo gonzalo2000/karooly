@@ -3,7 +3,7 @@ class Teacher::LessonsController < ApplicationController
   before_action :require_authorized_for_current_lesson, only: [:show, :edit, :update]
 
   def show
-    @lesson = Lesson.find(params[:id])
+    lesson
   end
 
   def new
@@ -11,7 +11,7 @@ class Teacher::LessonsController < ApplicationController
   end
 
   def edit
-    @lesson = Lesson.find(params[:id])
+    lesson
   end
 
   def create
@@ -24,9 +24,8 @@ class Teacher::LessonsController < ApplicationController
   end
 
   def update
-    @lesson = Lesson.find(params[:id])
-    if @lesson.update(lesson_params)
-      redirect_to teacher_lesson_path(current_lesson)
+    if lesson.update(lesson_params)
+      redirect_to teacher_lesson_path(lesson)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,13 +33,13 @@ class Teacher::LessonsController < ApplicationController
   
   private
     def require_authorized_for_current_lesson
-      if current_lesson.user != current_user
+      if lesson.user != current_user
         render text: "Unauthorized", status: :unauthorized
       end
     end
 
-    def current_lesson
-      @current_lesson ||= Lesson.find(params[:id])
+    def lesson
+      @lesson ||= Lesson.find(params[:id])
     end
 
     def lesson_params
