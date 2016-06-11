@@ -8,7 +8,7 @@
     <h2><%= link_to lesson.title, lesson_path(lesson) %></h2>
     <br>
     <div class="col-xs-12">
-      <i>by ###USER### (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
+      <i>by <%= lesson.user.username %> (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
     </div>
     
     <br>
