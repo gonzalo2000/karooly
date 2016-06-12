@@ -2,6 +2,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :user
   has_many :words, dependent: :destroy
   has_many :enrollments
+  
 
   validates :title, presence: true, length: { maximum: 55 }
   validates :description, presence: true, length: { maximum: 500 }

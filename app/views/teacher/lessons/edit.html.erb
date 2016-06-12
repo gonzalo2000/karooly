@@ -7,9 +7,8 @@
   <%= simple_form_for @lesson, url: teacher_lesson_path(@lesson), method: :patch do |f| %>
     <%= f.input :title %><br>
     <%= f.input :description %><br>
-    <%= f.input :subject %><br>
-    <%= f.input :difficulty %>
-    <br>
+    <%= f.input :subject, :label => "Language", :collection => ['Spanish', 'English', 'French', 'German', 'Latin', 'Chinese', 'Russian'] %><br>
+    <%= f.input :difficulty, :label => "Difficulty", :collection => [1,2,3,4,5] %><br><br>
     <%= f.submit "Update", class: 'btn btn-primary' %>
   <% end %>
   <br>
