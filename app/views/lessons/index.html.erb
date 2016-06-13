@@ -6,7 +6,6 @@
 
   <% @lessons.each do |lesson| %>
     <h2><%= link_to lesson.title, lesson_path(lesson) %></h2>
-    <br>
     <div class="col-xs-12">
       <i>by <%= lesson.user.username %> (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</i>
     </div>
@@ -18,7 +17,7 @@
       <%= lesson.description %>
     </div>
     <div class="col-xs-12 col-sm-4 text-center">
-      <%= link_to 'View Lesson', lesson_path(lesson), class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'View Lesson', lesson_path(lesson), class: 'btn btn-primary' %>
     </div>
     <br class="clear">
     <br>
