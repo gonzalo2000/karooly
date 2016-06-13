@@ -30,6 +30,12 @@ class Teacher::LessonsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    lesson.destroy
+    flash[:notice] = "Lesson destroyed."
+    redirect_to dashboard_path
+  end
   
   private
     def require_authorized_for_current_lesson

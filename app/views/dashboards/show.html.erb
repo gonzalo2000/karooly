@@ -7,7 +7,13 @@
   <h2>MY LESSONS</h2>
   <ul>
     <% current_user.lessons.each do |lesson| %>
-      <li><%= link_to lesson.title, teacher_lesson_path(lesson) %>: <%= lesson.description %></li>
+      <li><%= link_to lesson.title, teacher_lesson_path(lesson) %>: <%= lesson.description %>
+        <%= link_to 'Lesson Admin', teacher_lesson_path(lesson), class: 'btn btn-primary btn-sm' %> &nbsp
+        <%= link_to 'Delete Lesson', teacher_lesson_path(lesson), 
+            method: :delete,
+            data: { confirm: 'This will permanently delete this lesson and all of its words. Are you sure?' },
+            class: 'btn btn-danger btn-sm' %>      
+      </li>
       <br>
     <% end %>
   </ul>

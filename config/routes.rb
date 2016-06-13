@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   resources :words, only: [:show]
   namespace :teacher do
-    resources :lessons, only: [:show, :new, :edit, :create, :update] do 
+    resources :lessons, only: [:show, :new, :edit, :create, :update, :destroy] do 
       resources :words, only: [:new, :edit, :create, :update, :destroy]
     end
   end
