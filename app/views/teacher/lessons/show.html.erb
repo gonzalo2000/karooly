@@ -34,6 +34,11 @@
         
         <b><%= word.term %></b> &nbsp
 
+        <%= audio_tag word.sound, class: "audio-play" %>
+        <button type="button" class="btn btn-default audio-button">
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+        </button> &nbsp
+        
         <i>(<%= word.reference %>)</i> &nbsp
 
         <%= link_to 'Edit Word', edit_teacher_lesson_word_path(@lesson, word), class: 'btn btn-primary' %> &nbsp
