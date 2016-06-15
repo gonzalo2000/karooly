@@ -18,6 +18,8 @@
 
   <div class="text-center"><%= link_to 'Back to Lesson', lesson_path(current_word.lesson), class: 'btn btn-primary' %></div>
 
+  <%= link_to "< Previous", current_word.previous if current_word.previous && current_word.previous.lesson_id == current_word.lesson.id %>
+  <%= link_to "Next >", current_word.next if current_word.next && current_word.next.lesson_id == current_word.lesson.id %>
 </div>
 
 <br class="clear">
