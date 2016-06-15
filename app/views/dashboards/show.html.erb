@@ -11,7 +11,7 @@
         <%= link_to 'Lesson Admin', teacher_lesson_path(lesson), class: 'btn btn-primary btn-sm' %> &nbsp
         <%= link_to 'Delete Lesson', teacher_lesson_path(lesson), 
             method: :delete,
-            data: { confirm: 'This will permanently delete this lesson and all of its words. Are you sure?' },
+            data: { confirm: 'ATTENTION: You are about to permanently delete this lesson and all of its words. Are you sure?' },
             class: 'btn btn-danger btn-sm' %>      
       </li>
       <br>
