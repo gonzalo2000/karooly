@@ -6,7 +6,7 @@
     <%= f.input :term %><br>
     <%= f.input :reference %><br>
     <%= f.input :image, input_html: { accept: "image/gif, image/jpeg, image/jpg, image/png" } %><br>
-    <%= f.input :sound %>
+    <%= f.input :sound, input_html: { accept: "audio/mp3, audio/wma, audio/wav, audio/ra, audio/ram, audio/rm, audio/mid, audio/ogg, audio/aac, audio/aif, audio/iff, audio/m3u, audio/m4a, audio/mpa" } %>
     <br>
     <%= f.submit "Add word", class: 'btn btn-primary btn-large' %>
   <% end %>
