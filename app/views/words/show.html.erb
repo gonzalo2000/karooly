@@ -16,10 +16,25 @@
 
   <br>
 
-  <div class="text-center"><%= link_to 'Back to Lesson', lesson_path(current_word.lesson), class: 'btn btn-primary' %></div>
+  <!-- link buttons for previou or next word -->
+  <div class="text-center">
+    <% if current_word.previous && current_word.previous.lesson_id == current_word.lesson.id %>
+      <%= link_to current_word.previous do %>
+        <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+      <% end %>
+      &nbsp
+    <% end %>
 
-  <%= link_to "< Previous", current_word.previous if current_word.previous && current_word.previous.lesson_id == current_word.lesson.id %>
-  <%= link_to "Next >", current_word.next if current_word.next && current_word.next.lesson_id == current_word.lesson.id %>
+    <% if current_word.next && current_word.next.lesson_id == current_word.lesson.id %>
+      <%= link_to current_word.next do %>
+        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <br>
+
+  <div class="text-center"><%= link_to 'Back to Lesson', lesson_path(current_word.lesson), class: 'btn btn-primary' %></div>
 </div>
 
 <br class="clear">
