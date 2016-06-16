@@ -1,0 +1,2 @@
+module WordExpositionsHelper
+end

@@ -1,5 +1,6 @@
 class Word < ActiveRecord::Base
   belongs_to :lesson
+  has_many :word_expositions
 
   mount_uploader :image, ImageUploader
   mount_uploader :sound, SoundUploader
