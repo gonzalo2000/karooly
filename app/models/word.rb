@@ -11,10 +11,10 @@ class Word < ActiveRecord::Base
   validates :sound, presence: true
 
   def previous
-    Word.where(["id < ?", id]).last
+    Word.where(["id < ? AND lesson_id = ?", id, lesson_id]).last
   end
 
   def next
-    Word.where(["id > ?", id]).first
+    Word.where(["id > ? AND lesson_id = ?", id, lesson_id]).first
   end
 end
