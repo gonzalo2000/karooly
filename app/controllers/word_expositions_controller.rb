@@ -2,9 +2,8 @@ class WordExpositionsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_enrollment_in_lesson
 
-  #not currently showing
   def show
-    @word = current_lesson.words.find(params[:id])
+    @word = current_enrollment.word_expositions.find_by!(word_id: params[:id])
   end
 
   def update
@@ -19,6 +18,11 @@ class WordExpositionsController < ApplicationController
   helper_method :current_lesson
   def current_lesson
     @current_lesson ||= Lesson.find(params[:lesson_id])
+  end
+
+  helper_method :current_enrollment
+  def current_enrollment
+    @current_enrollment ||= Enrollment.find_by!(lesson_id: params[:lesson_id], user_id: current_user.id)
   end
 
   def require_enrollment_in_lesson

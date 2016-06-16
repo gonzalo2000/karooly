@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :lessons
-  has_many :enrollments
+  has_many :lessons, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
   has_many :enrolled_lessons, through: :enrollments, source: :lesson
   
   # Virtual attribute for authenticating by either username or email

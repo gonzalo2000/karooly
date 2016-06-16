@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 20160615224332) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 
   create_table "word_expositions", force: :cascade do |t|
-    t.integer  "lesson_id"
+    t.integer  "enrollment_id"
     t.integer  "word_id"
-    t.boolean  "completed",  default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "completed",     default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "words", force: :cascade do |t|

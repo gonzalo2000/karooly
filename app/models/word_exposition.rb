@@ -2,8 +2,10 @@ class WordExposition < ActiveRecord::Base
   belongs_to :enrollment
   belongs_to :word
 
+  delegate :term, to: :word #add other attributes
+
   attr_accessor :term_given_by_student
-  validate :word_from_student_matches_word
+  validate :word_from_student_matches_word, on: :update
 
   def word_from_student_matches_word
     return true if word.term == term_given_by_student
