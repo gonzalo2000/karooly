@@ -2,7 +2,7 @@ class WordExposition < ActiveRecord::Base
   belongs_to :enrollment
   belongs_to :word
 
-  delegate :term, to: :word #add other attributes
+  delegate :term, to: :word 
   delegate :reference, to: :word
   delegate :image, to: :word
   delegate :sound, to: :word
