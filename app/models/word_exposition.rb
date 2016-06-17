@@ -3,6 +3,9 @@ class WordExposition < ActiveRecord::Base
   belongs_to :word
 
   delegate :term, to: :word #add other attributes
+  delegate :reference, to: :word
+  delegate :image, to: :word
+  delegate :sound, to: :word
 
   attr_accessor :term_given_by_student
   validate :word_from_student_matches_word, on: :update
