@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show]
   resources :lessons, only: [:index, :show] do 
     resources :enrollments, only: :create
-    resources :word_expositions, only: [:show]
+    resources :word_expositions, only: [:show, :update]
   end
   resources :words, only: [:show]
   namespace :teacher do

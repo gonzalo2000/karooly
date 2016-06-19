@@ -1,5 +1,6 @@
 <h1 class="text-center">1: Word Exposition</h1>
 <br>
+
 <div class="booyah-box col-xs-10 col-xs-offset-1">
   <h2 class="text-center"><%= @word.term %></h2><br>
 
@@ -13,12 +14,12 @@
   </div>
 
   <br>
-  
-  <div class="text-center">
-    <i class="text-center">(type the term exactly as it appears above)</i>
-  </div>
 
-  <h1 class="text-center">--> HERE GOES A FORM TO CHECK SPELLING</h1>
+  <!-- Testing form -->
+  <%= simple_form_for @word, url: lesson_word_exposition_path(current_lesson, @word), method: :patch do |f| %>
+    <%= f.input :term_given_by_student, label: "Enter the term exactly as above:" %><br>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
 
 </div>
 

@@ -15,7 +15,7 @@ class WordExposition < ActiveRecord::Base
     errors.add(:term_given_by_student, "Terms don't match")
   end
 
-  def next_word_exposition
-    #logic
+  def next_exposition
+    WordExposition.where(["id > ? AND enrollment_id = ?", id, enrollment_id]).first
   end
 end
