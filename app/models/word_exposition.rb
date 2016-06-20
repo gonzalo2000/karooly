@@ -15,6 +15,7 @@ class WordExposition < ActiveRecord::Base
     errors.add(:term_given_by_student, "Terms don't match")
   end
 
+  #this breaks for non-adjacent records and for the last record
   def next_exposition
     WordExposition.where(["id > ? AND enrollment_id = ?", id, enrollment_id]).first
   end
