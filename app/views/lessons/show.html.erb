@@ -19,6 +19,11 @@
       <% elsif current_user %>
         <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
       <% end %>
+
+      <% if !current_user %>
+        <%= link_to 'Log in to enroll in this lesson', new_user_session_path, class: 'btn btn-primary' %>
+
+      <% end %>
     </div>
   
   <hr>
