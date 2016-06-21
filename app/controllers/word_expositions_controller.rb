@@ -14,6 +14,8 @@ class WordExpositionsController < ApplicationController
       flash[:notice] = "Congratulations!"
       if next_word = @current_word_exposition.next_exposition
         redirect_to lesson_word_exposition_path(current_lesson, next_word)
+      else
+        redirect_to lesson_path(current_lesson)
       end 
     else
       flash[:alert] = "Enter the word exactly as shown!"

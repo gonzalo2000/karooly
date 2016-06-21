@@ -12,7 +12,7 @@ class WordExposition < ActiveRecord::Base
 
   def word_from_student_matches_word
     return true if word.term == term_given_by_student.split.join(' ')
-    errors.add(:term_given_by_student, "Terms don't match")
+    errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors
   end
 
   #this breaks for non-adjacent records and for the last record
