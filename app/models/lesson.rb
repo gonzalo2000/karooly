@@ -2,6 +2,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :user
   has_many :words, dependent: :destroy
   has_many :enrollments, dependent: :destroy
+  before_save :strip_whitespace
   
 
   validates :title, presence: true, length: { maximum: 55 }
@@ -9,4 +10,9 @@ class Lesson < ActiveRecord::Base
   validates :subject, presence: true, length: { maximum: 55 }
   validates :difficulty, presence: true, numericality: { less_than_or_equal_to: 5 }
 
+  private
+    def strip_whitespace
+      self.title = self.title.split.join(' ')
+      self.description = self.description.split.join(' ')
+    end
 end
