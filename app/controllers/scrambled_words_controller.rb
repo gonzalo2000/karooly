@@ -6,9 +6,18 @@ class ScrambledWordsController < ApplicationController
     @word = current_enrollment.scrambled_words.find_by!(word_id: params[:id])
   end
 
+  #currently not working
   def update
-    #implement
-    #will need a way to redirect to next upon success
+    current_scrambled_word
+    @current_scrambled_word.completed = true
+    @current_word_exposition.unscrambled_matches_word = params[:scrambled_word][:unscrambled_attempt]
+    if @current_scrambled_word.save
+      flash[:notice] = "Congratulations!"
+      redirect_to lesson_path(current_lesson)
+    else
+      flash[:alert] = "Enter the word exactly as shown!"
+      redirect_to lesson_scrambled_word_path(current_lesson, current_scrambled_word)
+    end
   end
 
   private

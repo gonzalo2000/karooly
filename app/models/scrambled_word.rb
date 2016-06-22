@@ -10,6 +10,6 @@ class ScrambledWord < ActiveRecord::Base
 
   def unscrambled_matches_word
     return true if word.term == unscrambled_attempt.split.join(' ')
-    #errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors
+    #errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors 
   end
 end
