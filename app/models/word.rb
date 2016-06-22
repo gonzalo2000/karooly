@@ -1,6 +1,8 @@
 class Word < ActiveRecord::Base
   belongs_to :lesson
   has_many :word_expositions, dependent: :destroy
+  has_many :scrambled_words, dependent: :destroy
+
   before_save :strip_whitespace
 
   mount_uploader :image, ImageUploader

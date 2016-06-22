@@ -15,7 +15,10 @@
       
       <% if current_user && current_user.enrolled_in?(@lesson) %>
         <h3 class="label label-info">You are enrolled!</h3>
-        <h3><%= link_to "Start learning!", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %></h3>
+        <br><br>
+        <%= link_to "Vocab Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %> &nbsp
+        <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, @lesson.words.first), class: 'btn btn-warning btn-large' %>
+
       <% elsif current_user %>
         <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
       <% end %>
