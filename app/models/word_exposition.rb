@@ -8,11 +8,15 @@ class WordExposition < ActiveRecord::Base
   delegate :sound, to: :word
 
   attr_accessor :term_given_by_student
+
+  before_update :custom_update
+
   validate :word_from_student_matches_word, on: :update
 
   def word_from_student_matches_word
-    return true if word.term == term_given_by_student.split.join(' ')
-    errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors
+    if word.term != self.term_given_by_student.split.join(' ')
+      errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors 
+    end
   end
 
   #this breaks for non-adjacent records and for the last record
@@ -20,4 +24,9 @@ class WordExposition < ActiveRecord::Base
     WordExposition.where(["id > ? AND enrollment_id = ?", id, enrollment_id]).first
   end
 
+  def custom_update
+    if word_from_student_matches_word
+      self.completed = true
+    end
+  end
 end

@@ -4,8 +4,6 @@ class ScrambledWordsController < ApplicationController
 
   def show
     @word = current_enrollment.scrambled_words.find_by!(word_id: params[:id])
-    puts '-'*120
-    puts @word.class
   end
 
   #need to implement show next scrambled word upon succesful submission
