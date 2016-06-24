@@ -16,6 +16,9 @@ class WordExposition < ActiveRecord::Base
   def word_from_student_matches_word
     if word.term != self.term_given_by_student.split.join(' ')
       errors.add(:term_given_by_student, "Terms don't match") #this is not showing on errors 
+      false
+    else
+      true
     end
   end
 

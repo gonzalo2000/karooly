@@ -14,9 +14,9 @@ class WordExpositionsController < ApplicationController
     @current_word_exposition.term_given_by_student = params[:word_exposition][:term_given_by_student]
    
     if @current_word_exposition.save
-      if next_word = @current_word_exposition.next_exposition
+      if next_exposition = @current_word_exposition.next_exposition
         flash[:notice] = "Congratulations!"
-        redirect_to lesson_word_exposition_path(current_lesson, next_word)
+        redirect_to lesson_word_exposition_path(current_lesson, next_exposition.word)
       else
         flash[:notice] = "Congratulations! Review complete."
         redirect_to lesson_path(current_lesson)
