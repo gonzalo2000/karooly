@@ -4,19 +4,21 @@ class ScrambledWordsController < ApplicationController
 
   def show
     @word = current_enrollment.scrambled_words.find_by!(word_id: params[:id])
+    puts '-'*120
+    puts @word.class
   end
 
-  #currently not working
+  #need to implement show next scrambled word upon succesful submission
   def update
     current_scrambled_word
-    @current_scrambled_word.completed = true
-    @current_word_exposition.unscrambled_matches_word = params[:scrambled_word][:unscrambled_attempt]
+    @current_scrambled_word.unscrambled_attempt = params[:scrambled_word][:unscrambled_attempt]
     if @current_scrambled_word.save
       flash[:notice] = "Congratulations!"
       redirect_to lesson_path(current_lesson)
     else
-      flash[:alert] = "Enter the word exactly as shown!"
-      redirect_to lesson_scrambled_word_path(current_lesson, current_scrambled_word)
+      flash[:alert] = "Incorrect... Try again!"
+      word = current_enrollment.words.find(params[:id])
+      redirect_to lesson_scrambled_word_path(current_lesson, word)
     end
   end
 

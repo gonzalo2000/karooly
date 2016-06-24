@@ -4,6 +4,8 @@ class Enrollment < ActiveRecord::Base
   has_many :word_expositions, dependent: :destroy
   has_many :scrambled_words, dependent: :destroy
 
+  has_many :words, through: :scrambled_words
+
   after_create :create_the_associated_word_expositions
   after_create :create_the_associated_scrambled_words
 
