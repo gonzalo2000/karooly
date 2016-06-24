@@ -15,7 +15,7 @@
   <br>
 
   <!-- Testing form -->
-  <%= simple_form_for @word, url: lesson_scrambled_word_path(current_lesson, params[:id]), method: :patch do |f| %>
+  <%= simple_form_for @word, url: lesson_scrambled_word_path(current_lesson, @word.word), method: :patch do |f| %>
     <%= f.input :unscrambled_attempt, label: "Unscramble the above term:" %><br>
     <%= f.button :submit, class: 'btn btn-primary' %>
   <% end %>

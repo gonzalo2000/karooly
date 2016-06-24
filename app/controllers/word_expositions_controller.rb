@@ -6,9 +6,6 @@ class WordExpositionsController < ApplicationController
     @word = current_enrollment.word_expositions.find_by!(word_id: params[:id])
   end
 
-  #word exposition only treats the lesson words as exposable upon enrollment
-  #i.e. words added after enrollment don't have a record as WordExposition instances
-  #Also, .next_exposition breaks for non-sequential WordExposition id's
   def update
     current_word_exposition
     @current_word_exposition.term_given_by_student = params[:word_exposition][:term_given_by_student]
@@ -23,7 +20,7 @@ class WordExpositionsController < ApplicationController
       end 
     else
       flash[:alert] = "Enter the word exactly as shown!"
-      redirect_to lesson_word_exposition_path(current_lesson, current_word_exposition)
+      redirect_to lesson_word_exposition_path(current_lesson, current_word_exposition.word)
     end
   end
 

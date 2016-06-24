@@ -22,7 +22,6 @@ class WordExposition < ActiveRecord::Base
     end
   end
 
-  #this breaks for non-adjacent records and for the last record
   def next_exposition
     WordExposition.where(["id > ? AND enrollment_id = ?", id, enrollment_id]).first
   end

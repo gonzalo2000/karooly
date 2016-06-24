@@ -14,13 +14,18 @@ class ScrambledWordsController < ApplicationController
   def update
     current_scrambled_word
     @current_scrambled_word.unscrambled_attempt = params[:scrambled_word][:unscrambled_attempt]
-    if @current_scrambled_word.save
-      flash[:notice] = "Congratulations!"
-      redirect_to lesson_path(current_lesson)
+    
+    if @current_scrambled_word.save  
+      if next_scrambled = @current_scrambled_word.next_scramble
+        flash[:notice] = "Congratulations!"
+        redirect_to lesson_scrambled_word_path(current_lesson, next_scrambled.word)
+      else
+        flash[:notice] = "Scrambled activity complete!"
+        redirect_to lesson_path(current_lesson)
+      end
     else
       flash[:alert] = "Incorrect... Try again!"
-      word = current_enrollment.words.find(params[:id])
-      redirect_to lesson_scrambled_word_path(current_lesson, word)
+      redirect_to lesson_scrambled_word_path(current_lesson, current_scrambled_word.word)
     end
   end
 
