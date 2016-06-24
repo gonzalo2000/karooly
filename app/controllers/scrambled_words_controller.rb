@@ -2,6 +2,10 @@ class ScrambledWordsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_enrollment_in_lesson
 
+  def index
+    current_enrollment.next_incomplete_scrambled_word
+  end
+
   def show
     @word = current_enrollment.scrambled_words.find_by!(word_id: params[:id])
   end

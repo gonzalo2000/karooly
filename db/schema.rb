@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621234838) do
+ActiveRecord::Schema.define(version: 20160624213331) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160621234838) do
     t.boolean  "completed",     default: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "sequence"
   end
 
   create_table "users", force: :cascade do |t|
