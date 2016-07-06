@@ -15,4 +15,13 @@ class LessonsController < ApplicationController
       all_expositions.all? { |word_expo| word_expo.completed == true }
     end
   end
+
+  helper_method :completed_unscramble
+  def completed_unscramble
+    lesson = Lesson.find(params[:id])
+    if current_enrollment = lesson.enrollment_for(current_user)
+      all_unscramble = current_enrollment.scrambled_words
+      all_unscramble.all? { |scrambled| scrambled.completed == true }
+    end
+  end
 end
