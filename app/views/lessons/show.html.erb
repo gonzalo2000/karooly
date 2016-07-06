@@ -17,7 +17,7 @@
       
       <% if current_enrollment %>
         <br><br>
-        <h3 class="label label-info">You are enrolled!</h3>
+        <h3 class="label label-primary">You are enrolled!</h3>
         <br><br>
         <%= link_to "Vocab Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %> &nbsp
         <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'btn btn-warning btn-large' %>
@@ -30,22 +30,37 @@
       <% end %>
     </div>
 
-    <!-- Show Completed activities -->
+    <% if current_enrollment %>
+      <hr>
+    <% end %>
+
+    <!-- Display completed activities -->
     <% if current_enrollment && (completed_expo || completed_unscramble) %>
       <h3>Completed Activities</h3>
       <% if completed_expo %>
-        <h3 class="label label-info">Exposition completed</h3>
+        <h3 class="label label-info">Exposition</h3>
       <% end %>
 
       <% if completed_unscramble %>
-        <br>
-        <h3 class="label label-info">Unscramble completed</h3>
+        <h3 class="label label-info">Unscramble</h3>
+      <% end %>
+    <% end %>
+
+    <!-- Display incomplete activities -->
+    <% if current_enrollment && (!completed_expo || !completed_unscramble) %>
+      <h3>Activities to be Completed</h3>
+      <% if !completed_expo %>
+        <h3 class="label label-warning">Exposition</h3>
+      <% end %>
+
+      <% if !completed_unscramble %>
+        <h3 class="label label-warning">Unscramble</h3>
       <% end %>
     <% end %>
   
   <hr>
 
-  <h3>Vocabulary in This Lesson</h3>
+  <h3 class="text-center">VOCABULARY</h3>
 
   <% if @lesson.words.empty? %>
     <i>(this lesson doesn't have any vocabulary yet!)</i>
