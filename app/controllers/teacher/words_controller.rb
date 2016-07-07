@@ -13,6 +13,7 @@ class Teacher::WordsController < ApplicationController
   def create
     @word = current_lesson.words.create(word_params)
     if @word.valid?
+      current_lesson.reset_activities
       redirect_to teacher_lesson_path(current_lesson)
     else
       render :new, status: :unprocessable_entity
@@ -23,6 +24,7 @@ class Teacher::WordsController < ApplicationController
     @word = Word.find(params[:id])
 
     if @word.update(word_params)
+      current_lesson.reset_activities
       redirect_to teacher_lesson_path(current_lesson)
     else
       render :edit, status: :unprocessable_entity
