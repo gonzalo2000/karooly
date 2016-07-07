@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624213331) do
+ActiveRecord::Schema.define(version: 20160707002938) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "user_id"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 20160624213331) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  create_table "word_image_matches", force: :cascade do |t|
+    t.integer  "enrollment_id"
+    t.integer  "word_id"
+    t.boolean  "completed",     default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "word_image_matches", ["enrollment_id"], name: "index_word_image_matches_on_enrollment_id"
+  add_index "word_image_matches", ["word_id"], name: "index_word_image_matches_on_word_id"
 
   create_table "words", force: :cascade do |t|
     t.string   "term"
