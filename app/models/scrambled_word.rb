@@ -27,6 +27,6 @@ class ScrambledWord < ActiveRecord::Base
   end
 
   def next_scramble
-    ScrambledWord.where(["sequence > ? AND enrollment_id = ?", sequence, enrollment_id]).first
+    ScrambledWord.where(["sequence > ? AND enrollment_id = ?", sequence, enrollment_id]).order(:sequence).first
   end
 end
