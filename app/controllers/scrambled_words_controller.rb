@@ -10,7 +10,6 @@ class ScrambledWordsController < ApplicationController
     @word = current_enrollment.scrambled_words.find_by!(word_id: params[:id])
   end
 
-  #bug, not showing all scrambled words before showing complete notice
   def update
     current_scrambled_word
     @current_scrambled_word.unscrambled_attempt = params[:scrambled_word][:unscrambled_attempt]
