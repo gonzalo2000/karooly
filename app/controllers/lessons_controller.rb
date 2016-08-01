@@ -24,4 +24,11 @@ class LessonsController < ApplicationController
       all_unscramble.all? { |scrambled| scrambled.completed == true }
     end
   end
+
+  helper_method :enrolled_users
+  def enrolled_users
+    lesson = Lesson.find(params[:id])
+    enrollments = lesson.enrollments
+    enrolled_users = enrollments.map { |enrollment| enrollment.user }
+  end
 end
