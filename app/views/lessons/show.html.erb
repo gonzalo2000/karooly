@@ -48,7 +48,7 @@
 
     <!-- Display incomplete activities -->
     <% if current_enrollment && (!completed_expo || !completed_unscramble) %>
-      <h3>Activities to be Completed</h3>
+      <h3>Activities Remaining</h3>
       <% if !completed_expo %>
         <h3 class="label label-warning">Exposition</h3>
       <% end %>
@@ -84,10 +84,23 @@
 <br>
 
 <div class=" col-xs-10 col-xs-offset-1">
-  <h3>Users enrolled in this lesson</h3>
+  <h3>Users enrolled:</h3>
+  <% if enrolled_users.count == 0 %>
+    <p><i>(No users enrolled yet)</i></p>
+  <% end %>
   <% enrolled_users.each do |user| %>
   <ul>
-    <li><%= user.username %></li>
+    <li>
+      <%= user.username %>
+
+      <!-- Check for all activities completed -->
+      <% if completed_scram.include?(user) && completed_expos.include?(user) %>
+        <h6 class="label label-success">Completed</h6>
+      <% end %>
+    </li>
+
+    <!-- check if all activities are completed! -->
+    
   </ul>
 <% end %>
 </div>

@@ -31,4 +31,24 @@ class LessonsController < ApplicationController
     enrollments = lesson.enrollments
     enrolled_users = enrollments.map { |enrollment| enrollment.user }
   end
+
+  helper_method :completed_scram
+  def completed_scram
+    lesson = Lesson.find(params[:id])
+    completed_scram = enrolled_users.map do |user|
+      current_enrollment = lesson.enrollment_for(user)
+      all_unscramble = current_enrollment.scrambled_words
+      user if all_unscramble.all? { |scrambled| scrambled.completed == true }
+    end
+  end
+
+  helper_method :completed_expos
+  def completed_expos
+    lesson = Lesson.find(params[:id])
+    completed_expos = enrolled_users.map do |user|
+      current_enrollment = lesson.enrollment_for(user)
+      all_expos = current_enrollment.word_expositions
+      user if all_expos.all? { |expos| expos.completed == true }
+    end
+  end
 end
