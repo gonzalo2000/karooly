@@ -20,10 +20,7 @@
       
     <% if current_enrollment %>
       <br>
-      <h3 class="label label-primary">You are enrolled!</h3>
-      <br><br>
-      <%= link_to "Vocab Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %> &nbsp
-      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'btn btn-warning btn-large' %>
+      <h2 class="label label-primary">You are enrolled!</h2>
     <% elsif current_user && !@lesson.words.empty? %>
       <br>
       <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
