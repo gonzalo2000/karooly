@@ -1,62 +1,73 @@
-
 <br>
 
 <div class="booyah-box col-xs-10 col-xs-offset-1">
   <h1 class="text-center"><%= @lesson.title %></h1>
-  <h4 class="text-center"><i>by <%= @lesson.user.username %> (<%= @lesson.subject %>, Level <%= @lesson.difficulty %>)</i></h4>
+  <h4 class="text-center">by <%= @lesson.user.username %> (<%= @lesson.subject %>, Level <%= @lesson.difficulty %>)</h4>
   <br>
   <p class="text-center"><%= @lesson.description %></p>
   
-    <br>
-    <div class="text-center">
-      <% if current_user && current_user == @lesson.user %>
-        <%= link_to 'Lesson Admin', teacher_lesson_path(@lesson), class: 'btn btn-danger btn-large' %>
-      <% end %>
+  <div class="text-center">
+    <% if current_user && current_user == @lesson.user %>
+      <br>
+      <%= link_to 'Lesson Admin', teacher_lesson_path(@lesson), class: 'btn btn-danger btn-large' %><br>
+      <% if @lesson.words.empty? %>
+        <br>
+        <p>This lesson doesn't have any words. <%= link_to "Add", new_teacher_lesson_word_path(@lesson) %> your vocabulary so users can enroll.</p>
+      <% end  %>
+    <% end %>
       
-      <% current_enrollment = @lesson.enrollment_for(current_user) %>
+    <% current_enrollment = @lesson.enrollment_for(current_user) %>
       
-      <% if current_enrollment %>
-        <br><br>
-        <h3 class="label label-primary">You are enrolled!</h3>
-        <br><br>
-        <%= link_to "Vocab Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %> &nbsp
-        <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'btn btn-warning btn-large' %>
-      <% elsif current_user %>
-        <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
-      <% end %>
-
-      <% if !current_user %>
-        <%= link_to 'Log in to enroll in this lesson', new_user_session_path, class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-
     <% if current_enrollment %>
-      <hr>
+      <br>
+      <h3 class="label label-primary">You are enrolled!</h3>
+      <br><br>
+      <%= link_to "Vocab Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'btn btn-success btn-large' %> &nbsp
+      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'btn btn-warning btn-large' %>
+    <% elsif current_user && !@lesson.words.empty? %>
+      <br>
+      <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
     <% end %>
 
-    <!-- Display completed activities -->
-    <% if current_enrollment && (completed_expo || completed_unscramble) %>
-      <h3>Completed Activities</h3>
-      <% if completed_expo %>
-        <h3 class="label label-info">Exposition</h3>
-      <% end %>
+    <% if !current_user && !@lesson.words.empty? %>
+      <br>
+      <%= link_to 'Log in to enroll in this lesson', new_user_session_path, class: 'btn btn-primary' %>
+    <% elsif @lesson.words.empty? %>
+      <br>
+      <p>(You will be able to enroll in this lesson once its creator uploads vocabulary.)</p>
+    <% end %>
+  </div>
 
-      <% if completed_unscramble %>
-        <h3 class="label label-info">Unscramble</h3>
-      <% end %>
+  <% if current_enrollment %>
+    <hr>
+  <% end %>
+
+  <!-- Display completed activities -->
+  <% if current_enrollment && (completed_expo || completed_unscramble) %>
+    <h3>Completed Activities</h3>
+
+    <p><i>(Try them again for practice!)</i></p>
+
+    <% if completed_expo %>
+      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %> &nbsp
     <% end %>
 
-    <!-- Display incomplete activities -->
-    <% if current_enrollment && (!completed_expo || !completed_unscramble) %>
-      <h3>Activities Remaining</h3>
-      <% if !completed_expo %>
-        <h3 class="label label-warning">Exposition</h3>
-      <% end %>
-
-      <% if !completed_unscramble %>
-        <h3 class="label label-warning">Unscramble</h3>
-      <% end %>
+    <% if completed_unscramble %>
+      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-info' %>
     <% end %>
+  <% end %>
+
+  <!-- Display incomplete activities -->
+  <% if current_enrollment && (!completed_expo || !completed_unscramble) %>
+    <h3>Activities To Be Completed</h3>
+    <% if !completed_expo %>
+      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> &nbsp
+    <% end %>
+
+    <% if !completed_unscramble %>
+      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-warning' %>
+    <% end %>
+  <% end %>
   
   <hr>
 
@@ -71,20 +82,18 @@
       <li>
         <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
         <%= link_to word.term, word_path(word) %> &nbsp 
-        <i>(<%= word.reference %>)</i>
-        
+        (<%= word.reference %>)
       </li>
       <br>
     <% end %>
   </ul>
-
 </div>
 
 <br class="clear">
 <br>
 
 <div class=" col-xs-10 col-xs-offset-1">
-  <h3>Users enrolled:</h3>
+  <h3>Enrolled users:</h3>
   <% if enrolled_users.count == 0 %>
     <p><i>(No users enrolled yet)</i></p>
   <% end %>
@@ -92,15 +101,11 @@
   <ul>
     <li>
       <%= user.username %>
-
       <!-- Check for all activities completed -->
       <% if completed_scram.include?(user) && completed_expos.include?(user) %>
         <h6 class="label label-success">Completed</h6>
       <% end %>
-    </li>
-
-    <!-- check if all activities are completed! -->
-    
+    </li>    
   </ul>
 <% end %>
 </div>
