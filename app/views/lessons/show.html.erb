@@ -74,7 +74,7 @@
     <i>(this lesson doesn't have any vocabulary yet!)</i>
   <% end %>
   
-  <ul>
+  <ul class="list-square">
     <% @lesson.words.each do |word| %>
       <li>
         <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
@@ -95,7 +95,7 @@
     <p><i>(No users enrolled yet)</i></p>
   <% end %>
   <% enrolled_users.each do |user| %>
-  <ul>
+  <ul class="list-square">
     <li>
       <%= user.username %>
       <!-- Check for all activities completed -->
