@@ -100,7 +100,7 @@
       <%= user.username %>
       <!-- Check for all activities completed -->
       <% if completed_scram.include?(user) && completed_expos.include?(user) %>
-        <h6 class="label label-success">Completed</h6>
+        <i class="fa fa-check-circle" id="check-completed-lesson"></i>
       <% end %>
     </li>    
   </ul>

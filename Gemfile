@@ -31,6 +31,8 @@ gem 'figaro'
 gem 'fog'
 gem 'mini_magick', '~> 4.3.1'
 gem 'will_paginate', '~> 3.1.0'
+gem "font-awesome-rails"
+
 
 
 # Use ActiveModel has_secure_password
