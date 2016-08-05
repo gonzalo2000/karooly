@@ -32,6 +32,7 @@ class LessonsController < ApplicationController
     enrolled_users = enrollments.map { |enrollment| enrollment.user }
   end
 
+  #for all users
   helper_method :completed_scram
   def completed_scram
     lesson = Lesson.find(params[:id])
@@ -42,6 +43,7 @@ class LessonsController < ApplicationController
     end
   end
 
+  #for all users
   helper_method :completed_expos
   def completed_expos
     lesson = Lesson.find(params[:id])
