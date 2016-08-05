@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707002938) do
+ActiveRecord::Schema.define(version: 20160805185416) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "user_id"
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 20160707002938) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "word_dictations", force: :cascade do |t|
+    t.integer  "enrollment_id"
+    t.integer  "word_id"
+    t.boolean  "completed",     default: false
+    t.integer  "sequence"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "word_dictations", ["enrollment_id"], name: "index_word_dictations_on_enrollment_id"
+  add_index "word_dictations", ["word_id"], name: "index_word_dictations_on_word_id"
 
   create_table "word_expositions", force: :cascade do |t|
     t.integer  "enrollment_id"
