@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :enrollments, only: :create
     resources :word_expositions, only: [:show, :update]
     resources :scrambled_words, only: [:show, :update]
+    resources :word_dictations, only: [:show, :update]
   end
   resources :words, only: [:show]
   namespace :teacher do

@@ -1,0 +1,2 @@
+class WordDictationsController < ApplicationController
+end
