@@ -3,12 +3,11 @@ class Enrollment < ActiveRecord::Base
   belongs_to :user
   has_many :word_expositions, dependent: :destroy
   has_many :scrambled_words, dependent: :destroy
-
-  # has_many :words, through: :scrambled_words
-  # has_many :words, through: :word_expositions
+  has_many :word_dictations, dependent: :destroy
 
   after_create :create_the_associated_word_expositions
   after_create :create_the_associated_scrambled_words
+  after_create :create_the_associated_word_dictations
 
   def create_the_associated_word_expositions
     lesson.words.each do |word| 
@@ -24,7 +23,19 @@ class Enrollment < ActiveRecord::Base
     end
   end
 
+  def create_the_associated_word_dictations
+    count = lesson.words.count
+    sequences = (0...count).to_a.shuffle
+    lesson.words.each do |word| 
+      word_dictations.create!(word: word, completed: false, sequence: sequences.pop) 
+    end
+  end
+
   def first_scrambled_word
     scrambled_words.order(:sequence).first
+  end
+
+  def first_word_dictation
+    word_dictations.order(:sequence).first
   end
 end
