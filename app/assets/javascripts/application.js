@@ -16,8 +16,16 @@
 //= require_tree .
 
 jQuery(document).ready(function() {
-$(".audio-button").on("click", function() {
-        $(".audio-play")[0].currentTime = 0;
-        return $(".audio-play")[0].play();
-      });
+  $(".audio-button").on("click", function() {
+    $(".audio-play")[0].currentTime = 0;
+      return $(".audio-play")[0].play();
+  });
+
+  $(".lesson-audio-button").on("click", function() {
+    var audio = $(this).prev(".lesson-audio-play");
+    audio[0].currentTime = 0;
+    return audio[0].play();
+  });
+
 });
+
