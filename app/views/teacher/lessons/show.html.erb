@@ -30,7 +30,7 @@
   <ul>
     <% @lesson.words.each do |word| %>
       <li> 
-        <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
+        <%= image_tag word.image_url(:thumb) %> &nbsp
         
         <b><%= word.term %></b> &nbsp
 
