@@ -4,10 +4,10 @@ class Lesson < ActiveRecord::Base
   has_many :enrollments, dependent: :destroy
   has_many :scrambled_words, through: :enrollments
   has_many :word_expositions, through: :enrollments
+  has_many :word_dictations, through: :enrollments
 
   before_save :strip_whitespace
   
-
   validates :title, presence: true, length: { maximum: 55 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :subject, presence: true, length: { maximum: 55 }
@@ -16,6 +16,7 @@ class Lesson < ActiveRecord::Base
   def reset_activities
     word_expositions.update_all(completed: false)
     scrambled_words.update_all(completed: false)
+    word_dictations.update_all(completed: false)
   end
 
   def enrollment_for(student_user)

@@ -2,6 +2,7 @@ class Word < ActiveRecord::Base
   belongs_to :lesson
   has_many :word_expositions, dependent: :destroy
   has_many :scrambled_words, dependent: :destroy
+  has_many :word_dictations, dependent: :destroy
 
   before_save :strip_whitespace
 
