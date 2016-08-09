@@ -57,11 +57,15 @@ span.glyphicon-circle-arrow-left {
     color: green;
 }
 
-.boxed-letter {
+.booyah-box .boxed-letter {
   display: inline;
-  mid-width: 300px;
-  min-height: 300px;
-  border: 1px solid green;
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: grey;
+  font-family: "Courier New", Courier, monospace;
+  color: white;
 }
 
 .unselectable {
