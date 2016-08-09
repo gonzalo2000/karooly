@@ -46,12 +46,12 @@
     <p><i>(Try them again for practice!)</i></p>
 
     <% if completed_expo %>
-      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %> &nbsp
+      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %>
     <% end %>
 
     <% if completed_unscramble %>
       <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-info' %>
-    <% end %>&nbsp
+    <% end %>
 
     <% if completed_dictations %>
       <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-info' %>
@@ -62,12 +62,12 @@
   <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations) %>
     <h3>Activities To Be Completed</h3>
     <% if !completed_expo %>
-      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> &nbsp
+      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> 
     <% end %>
 
     <% if !completed_unscramble %>
       <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-warning' %>
-    <% end %>&nbsp
+    <% end %>
 
     <% if !completed_dictations %>
       <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-warning' %>

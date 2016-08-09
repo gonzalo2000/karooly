@@ -24,6 +24,7 @@ body {
   border: 1px solid #ccc;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding: 10px;
+  font-family: "Lucida Grande", sans-serif;
 }
 
 .booyah-box h4, .booyah-box h3, .booyah-box h2, .booyah-box h1 {
@@ -43,7 +44,7 @@ body {
 } 
 
 .booyah-box .img-responsive {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 span.glyphicon-circle-arrow-right {
@@ -92,7 +93,13 @@ ul.list-square {
 }
 
 .opaque-box {
+  font-family: "Lucida Grande", sans-serif;
   background-color: rgba(0,0,0,0.5);
   padding: 20px 20px 0 20px;
   color: white;
+}
+
+.booyah-box .label {
+  padding: 8px;
+  margin: 5px;
 }
