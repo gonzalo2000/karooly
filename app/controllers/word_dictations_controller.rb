@@ -12,7 +12,7 @@ class WordDictationsController < ApplicationController
     
     if @current_dictation.save  
       if next_dictated = @current_dictation.next_dictation
-        flash[:notice] = "Congratulations!"
+        flash[:notice] = "Correct!"
         redirect_to lesson_word_dictation_path(current_lesson, next_dictated.word)
       else
         flash[:notice] = "Dictation activity complete!"

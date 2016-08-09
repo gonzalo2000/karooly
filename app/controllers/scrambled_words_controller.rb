@@ -16,7 +16,7 @@ class ScrambledWordsController < ApplicationController
     
     if @current_scrambled_word.save  
       if next_scrambled = @current_scrambled_word.next_scramble
-        flash[:notice] = "Congratulations!"
+        flash[:notice] = "Correct!"
         redirect_to lesson_scrambled_word_path(current_lesson, next_scrambled.word)
       else
         flash[:notice] = "Scrambled activity complete!"

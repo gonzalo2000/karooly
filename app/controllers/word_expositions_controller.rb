@@ -12,10 +12,10 @@ class WordExpositionsController < ApplicationController
    
     if @current_word_exposition.save
       if next_exposition = @current_word_exposition.next_exposition
-        flash[:notice] = "Congratulations!"
+        flash[:notice] = "Correct!"
         redirect_to lesson_word_exposition_path(current_lesson, next_exposition.word)
       else
-        flash[:notice] = "Congratulations! Review complete."
+        flash[:notice] = "Review complete!"
         redirect_to lesson_path(current_lesson)
       end 
     else
