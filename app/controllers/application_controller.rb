@@ -16,4 +16,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     lessons_path(current_user) 
   end
+
+  private
+
+  def after_sign_out_path_for(resource_or_scope)
+    lessons_path
+  end
 end
