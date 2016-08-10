@@ -31,7 +31,7 @@
   <ul>
     <% current_user.enrolled_lessons.each do |lesson| %>
     <li>
-      <%= link_to lesson.title, lesson_path(lesson) %> (<%= lesson.subject %> level <%= lesson.difficulty %>, by <%= lesson.user.username %>): <%= lesson.description %>
+      <%= link_to lesson.title, lesson_path(lesson) %> (<%= lesson.subject %> <%= lesson.difficulty %>, by <%= lesson.user.username %>): <%= lesson.description %>
     </li>
     <br>
   <% end %>
