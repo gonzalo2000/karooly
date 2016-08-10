@@ -42,7 +42,7 @@
   <% end %>
 
   <!-- Display completed activities -->
-  <% if current_enrollment && (completed_expo || completed_unscramble || completed_dictations) %>
+  <% if current_enrollment && (completed_expo || completed_unscramble || completed_dictations || completed_spellings) %>
     <h3>Completed Activities</h3>
 
     <p><i>(Try them again for practice!)</i></p>
@@ -58,10 +58,14 @@
     <% if completed_dictations %>
       <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-info' %>
     <% end %>
+
+    <% if completed_spellings %>
+      <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-info' %>
+    <% end %>
   <% end %>
 
   <!-- Display incomplete activities -->
-  <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations) %>
+  <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations || !completed_spellings) %>
     <h3>Activities To Be Completed</h3>
     <% if !completed_expo %>
       <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> 
@@ -73,6 +77,10 @@
 
     <% if !completed_dictations %>
       <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-warning' %>
+    <% end %>
+
+    <% if !completed_spellings%>
+      <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-warning' %> 
     <% end %>
 
   <% end %>
@@ -119,7 +127,7 @@
     <li>
       <%= user.username %>
       <!-- Check for all activities completed -->
-      <% if completed_scram.include?(user) && completed_expos.include?(user) && completed_dicts.include?(user) %>
+      <% if completed_scram.include?(user) && completed_expos.include?(user) && completed_dicts.include?(user) && completed_spel.include?(user) %>
         <i class="fa fa-check-circle" id="check-completed-lesson"></i>
       <% end %>
     </li>    

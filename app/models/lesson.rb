@@ -5,6 +5,7 @@ class Lesson < ActiveRecord::Base
   has_many :scrambled_words, through: :enrollments
   has_many :word_expositions, through: :enrollments
   has_many :word_dictations, through: :enrollments
+  has_many :image_spellings, through: :enrollments
 
   before_save :strip_whitespace
   
@@ -17,6 +18,7 @@ class Lesson < ActiveRecord::Base
     word_expositions.update_all(completed: false)
     scrambled_words.update_all(completed: false)
     word_dictations.update_all(completed: false)
+    image_spellings.update_all(completed: false)
   end
 
   def enrollment_for(student_user)

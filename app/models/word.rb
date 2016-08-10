@@ -3,6 +3,7 @@ class Word < ActiveRecord::Base
   has_many :word_expositions, dependent: :destroy
   has_many :scrambled_words, dependent: :destroy
   has_many :word_dictations, dependent: :destroy
+  has_many :image_spellings, dependent: :destroy
 
   before_save :strip_whitespace
 

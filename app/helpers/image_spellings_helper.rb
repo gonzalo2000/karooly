@@ -1,0 +1,2 @@
+module ImageSpellingsHelper
+end

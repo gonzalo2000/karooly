@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805185416) do
+ActiveRecord::Schema.define(version: 20160810222702) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20160805185416) do
 
   add_index "enrollments", ["lesson_id"], name: "index_enrollments_on_lesson_id"
   add_index "enrollments", ["user_id", "lesson_id"], name: "index_enrollments_on_user_id_and_lesson_id"
+
+  create_table "image_spellings", force: :cascade do |t|
+    t.integer  "enrollment_id"
+    t.integer  "word_id"
+    t.boolean  "completed",     default: false
+    t.integer  "sequence"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "image_spellings", ["enrollment_id"], name: "index_image_spellings_on_enrollment_id"
+  add_index "image_spellings", ["word_id"], name: "index_image_spellings_on_word_id"
 
   create_table "lessons", force: :cascade do |t|
     t.string   "title"

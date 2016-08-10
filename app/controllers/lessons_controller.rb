@@ -34,6 +34,15 @@ class LessonsController < ApplicationController
     end
   end
 
+  helper_method :completed_spellings
+  def completed_spellings
+    lesson = Lesson.find(params[:id])
+    if current_enrollment = lesson.enrollment_for(current_user)
+      all_spellings = current_enrollment.image_spellings
+      all_spellings.all? { |spelling| spelling.completed == true }
+    end
+  end
+
   helper_method :enrolled_users
   def enrolled_users
     lesson = Lesson.find(params[:id])
@@ -71,6 +80,17 @@ class LessonsController < ApplicationController
       current_enrollment = lesson.enrollment_for(user)
       all_dicts = current_enrollment.word_dictations
       user if all_dicts.all? { |dict| dict.completed == true }
+    end
+  end
+
+  #for all users
+  helper_method :completed_spel
+  def completed_spel
+    lesson = Lesson.find(params[:id])
+    completed_sp = enrolled_users.map do |user|
+      current_enrollment = lesson.enrollment_for(user)
+      all_sp = current_enrollment.image_spellings
+      user if all_sp.all? { |spell| spell.completed == true }
     end
   end
 end
