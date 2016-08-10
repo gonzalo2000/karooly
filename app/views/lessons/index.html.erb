@@ -8,9 +8,9 @@
   <% @lessons.each do |lesson| %>
     <% unless lesson.words.empty? %>
       <h2><%= link_to lesson.title, lesson_path(lesson) %></h2>
-      <span class="text-warning">by <%= lesson.user.username %> (<%= lesson.subject %>, Level <%= lesson.difficulty %>)</span>
+      <span class="text-warning gen-text">by <%= lesson.user.username %> (<%= lesson.subject %> <%= lesson.difficulty %>)</span>
       <br>
-      <span class="text-success">Description: <%= lesson.description %></span><br>
+      <span class="text-success gen-text"><%= lesson.description %></span><br>
       <%= link_to 'View Lesson', lesson_path(lesson), class: 'btn btn-primary view-button' %>
       <br><br>
     <% end %>

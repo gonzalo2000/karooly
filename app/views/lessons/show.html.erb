@@ -4,9 +4,9 @@
 
 <div class="booyah-box col-xs-10 col-xs-offset-1">
   <h1 class="text-center"><%= @lesson.title %></h1>
-  <h4 class="text-center">by <%= @lesson.user.username %> (<%= @lesson.subject %>, Level <%= @lesson.difficulty %>)</h4>
+  <h4 class="text-center">by <%= @lesson.user.username %> (<%= @lesson.subject %> <%= @lesson.difficulty %>)</h4>
   <br>
-  <p class="text-center"><%= @lesson.description %></p>
+  <p class="text-center gen-text"><%= @lesson.description %></p>
   
   <div class="text-center">
     <% if current_user && current_user == @lesson.user %>
@@ -79,7 +79,9 @@
     
   <hr>
 
-  <h3 class="text-center">VOCABULARY</h3>
+  <h2 class="text-center">VOCABULARY</h2>
+  
+  <br>
 
   <% if @lesson.words.empty? %>
     <i>(this lesson doesn't have any vocabulary yet!)</i>
@@ -89,7 +91,7 @@
     <% @lesson.words.each do |word| %>
       <li>
         <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
-        <%= link_to word.term, word_path(word) %> &nbsp 
+        <%= link_to word.term, word_path(word), class: "gen-text" %> &nbsp 
         (<%= word.reference %>)
       </li>
       <br>

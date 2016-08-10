@@ -13,7 +13,7 @@
 
   <ul>
     <% current_user.lessons.each do |lesson| %>
-      <li><%= link_to lesson.title, teacher_lesson_path(lesson) %>: <%= lesson.description %>
+      <li class="gen-text"><%= link_to lesson.title, teacher_lesson_path(lesson) %>: <%= lesson.description %>
         <br>
         <%= link_to 'Lesson Admin', teacher_lesson_path(lesson), class: 'btn btn-primary btn-sm' %>
         <%= link_to 'Delete Lesson', teacher_lesson_path(lesson), 
@@ -30,7 +30,7 @@
   <h2>Lessons You Are Enrolled In</h2>
   <ul>
     <% current_user.enrolled_lessons.each do |lesson| %>
-    <li>
+    <li class="gen-text">
       <%= link_to lesson.title, lesson_path(lesson) %> (<%= lesson.subject %> <%= lesson.difficulty %>, by <%= lesson.user.username %>): <%= lesson.description %>
     </li>
     <br>
