@@ -15,8 +15,12 @@
   <% end %>
 
   <br>
-
   <%= will_paginate @lessons, class: 'flickr_pagination' %>
+  <br>
+
+  <div class="text-center">
+    <%= social_share_button_tag("Learn languages at Karooly!") %>
+  </div>
 </div>
 
 <br class="clear">

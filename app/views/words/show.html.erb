@@ -1,42 +1,45 @@
 <br>
 
-<div class="booyah-box col-xs-10 col-xs-offset-1">
-  <h1 class="text-center"><%= current_word.term %></h1><br>
+<div class="booyah-box col-xs-10 col-xs-offset-1 text-center">
+  <h1><%= current_word.term %></h1><br>
 
   <%= image_tag(current_word.image, class: 'img-responsive') %><br>
 
-  <p class="text-center">(means <i><%= current_word.reference %></i>)</p><br>
+  <p>(means <i><%= current_word.reference %></i>)</p><br>
 
-  <div class="text-center">
-    <%= audio_tag current_word.sound, autoplay: true, class: "audio-play" %>
-    <button type="button" class="btn btn-default btn-lg audio-button">
-      <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-    </button>
-  </div>
+  
+  <%= audio_tag current_word.sound, autoplay: true, class: "audio-play" %>
+  <button type="button" class="btn btn-default btn-lg audio-button">
+    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+  </button>
 
-  <br>
+  <br><br>
 
   <!-- link buttons for previou or next word -->
-  <div class="text-center">
-    <% if current_word.previous  %>
-      <%= link_to current_word.previous do %>
-        <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-      <% end %>
-      &nbsp
+  <% if current_word.previous  %>
+    <%= link_to current_word.previous do %>
+    <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
     <% end %>
+    &nbsp
+  <% end %>
 
-    <% if current_word.next %>
-      <%= link_to current_word.next do %>
-        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-      <% end %>
+  <% if current_word.next %>
+    <%= link_to current_word.next do %>
+      <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
     <% end %>
-  </div>
+  <% end %>
   <!-- end prev/next buttons -->
 
-  <br>
+  <br><br>
+  
+  <%= link_to 'Back to Lesson', lesson_path(current_word.lesson), class: 'btn btn-primary' %>
+  
+</div>
 
-  <div class="text-center"><%= link_to 'Back to Lesson', lesson_path(current_word.lesson), class: 'btn btn-primary' %></div>
-  </div>
+<div class="clear"></div>
 
-<br class="clear">
+<br>
+<div class="text-center">
+  <%= social_share_button_tag("\"#{current_word.term}\" (#{current_word.reference}) at KAROOLY!") %>
+</div>
 <br>

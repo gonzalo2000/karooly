@@ -74,7 +74,7 @@
     <% end %>
 
   <% end %>
-  
+    
   <hr>
 
   <h3 class="text-center">VOCABULARY</h3>
@@ -93,6 +93,13 @@
       <br>
     <% end %>
   </ul>
+
+  <br>
+
+  <div class="text-center">
+    <%= social_share_button_tag("\"#{@lesson.title}\" (#{@lesson.subject} #{@lesson.difficulty}) at KAROOLY!") %>
+  </div>
+
 </div>
 
 <br class="clear">
