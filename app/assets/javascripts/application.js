@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require social-share-button
 //= require_tree .
 
 jQuery(document).ready(function() {
