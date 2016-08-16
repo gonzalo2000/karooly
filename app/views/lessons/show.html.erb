@@ -116,8 +116,10 @@
     <%= social_share_button_tag("\"#{@lesson.title}\" (#{@lesson.subject} #{@lesson.difficulty}) at Karooly!") %>
   </div>
 
+  <br>
+  
   <div class="print-icon text-right">
-    <%= link_to @lesson.title, :onclick => 'window.print();return false;' do %>
+    <%= link_to @lesson, :onclick => 'window.print();return false;' do %>
       <i class="fa fa-print fa-2x" aria-hidden="true"></i>
     <% end %>
   </div>
