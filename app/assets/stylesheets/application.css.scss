@@ -28,3 +28,14 @@ $size: 24px;
     width: $size;
   }
 }
+
+/* CSS for lesson handout version */
+@media print{
+  body{ background-color:#FFFFFF; background-image:none; color:#000000 }
+  .user-enroll-info{ display:none;}
+  .social-icons{ display:none;}
+  .enroll-box{ display:none;}
+  .print-icon{ display:none;}
+  .booyah-box{ border-width:0; width:100%;}
+  a[href]:after {content: none;}
+}

@@ -8,83 +8,87 @@
   <br>
   <p class="text-center gen-text"><%= @lesson.description %></p>
   
-  <div class="text-center">
-    <% if current_user && current_user == @lesson.user %>
-      <br>
-      <%= link_to 'Lesson Admin', teacher_lesson_path(@lesson), class: 'btn btn-danger btn-large' %><br>
-      <% if @lesson.words.empty? %>
+  <!-- hide user-enroll-info from printer view-->
+  <div class="user-enroll-info">
+    <div class="text-center">
+      <% if current_user && current_user == @lesson.user %>
         <br>
-        <p>This lesson doesn't have any words. <%= link_to "Add", new_teacher_lesson_word_path(@lesson) %> your vocabulary so users can enroll.</p>
-      <% end  %>
-    <% end %>
-      
-    <% current_enrollment = @lesson.enrollment_for(current_user) %>
-      
+        <%= link_to 'Lesson Admin', teacher_lesson_path(@lesson), class: 'btn btn-danger btn-large' %><br>
+        <% if @lesson.words.empty? %>
+          <br>
+          <p>This lesson doesn't have any words. <%= link_to "Add", new_teacher_lesson_word_path(@lesson) %> your vocabulary so users can enroll.</p>
+        <% end  %>
+      <% end %>
+        
+      <% current_enrollment = @lesson.enrollment_for(current_user) %>
+        
+      <% if current_enrollment %>
+        <br>
+        <h2 class="label label-primary">You are enrolled!</h2>
+      <% elsif current_user && !@lesson.words.empty? %>
+        <br>
+        <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
+      <% end %>
+
+      <% if !current_user && !@lesson.words.empty? %>
+        <br>
+        <%= link_to 'Log in to enroll in this lesson', new_user_session_path, class: 'btn btn-primary' %>
+      <% elsif @lesson.words.empty? %>
+        <br>
+        <p>(You will be able to enroll in this lesson once its creator uploads vocabulary.)</p>
+      <% end %>
+    </div>
+
     <% if current_enrollment %>
-      <br>
-      <h2 class="label label-primary">You are enrolled!</h2>
-    <% elsif current_user && !@lesson.words.empty? %>
-      <br>
-      <%= link_to 'Enroll', lesson_enrollments_path(@lesson), class: 'btn btn-primary', method: :post %>
+      <hr>
     <% end %>
 
-    <% if !current_user && !@lesson.words.empty? %>
-      <br>
-      <%= link_to 'Log in to enroll in this lesson', new_user_session_path, class: 'btn btn-primary' %>
-    <% elsif @lesson.words.empty? %>
-      <br>
-      <p>(You will be able to enroll in this lesson once its creator uploads vocabulary.)</p>
-    <% end %>
-  </div>
+    <!-- Display completed activities -->
+    <% if current_enrollment && (completed_expo || completed_unscramble || completed_dictations || completed_spellings) %>
+      <h3>Completed Activities</h3>
 
-  <% if current_enrollment %>
-    <hr>
-  <% end %>
+      <p><i>(Try them again for practice!)</i></p>
 
-  <!-- Display completed activities -->
-  <% if current_enrollment && (completed_expo || completed_unscramble || completed_dictations || completed_spellings) %>
-    <h3>Completed Activities</h3>
+      <% if completed_expo %>
+        <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %>
+      <% end %>
 
-    <p><i>(Try them again for practice!)</i></p>
+      <% if completed_unscramble %>
+        <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-info' %>
+      <% end %>
 
-    <% if completed_expo %>
-      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %>
-    <% end %>
+      <% if completed_dictations %>
+        <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-info' %>
+      <% end %>
 
-    <% if completed_unscramble %>
-      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-info' %>
+      <% if completed_spellings %>
+        <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-info' %>
+      <% end %>
     <% end %>
 
-    <% if completed_dictations %>
-      <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-info' %>
+    <!-- Display incomplete activities -->
+    <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations || !completed_spellings) %>
+      <h3>Activities To Be Completed</h3>
+      <% if !completed_expo %>
+        <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> 
+      <% end %>
+
+      <% if !completed_unscramble %>
+        <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-warning' %>
+      <% end %>
+
+      <% if !completed_dictations %>
+        <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-warning' %>
+      <% end %>
+
+      <% if !completed_spellings%>
+        <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-warning' %> 
+      <% end %>
+
     <% end %>
 
-    <% if completed_spellings %>
-      <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-info' %>
-    <% end %>
-  <% end %>
-
-  <!-- Display incomplete activities -->
-  <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations || !completed_spellings) %>
-    <h3>Activities To Be Completed</h3>
-    <% if !completed_expo %>
-      <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> 
-    <% end %>
-
-    <% if !completed_unscramble %>
-      <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-warning' %>
-    <% end %>
-
-    <% if !completed_dictations %>
-      <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-warning' %>
-    <% end %>
-
-    <% if !completed_spellings%>
-      <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-warning' %> 
-    <% end %>
-
-  <% end %>
-    
+  </div> <!-- end page info -->
+  
   <hr>
 
   <h2 class="text-center">VOCABULARY</h2>
@@ -108,8 +112,14 @@
 
   <br>
 
-  <div class="text-center">
+  <div class="text-center social-icons">
     <%= social_share_button_tag("\"#{@lesson.title}\" (#{@lesson.subject} #{@lesson.difficulty}) at Karooly!") %>
+  </div>
+
+  <div class="print-icon text-right">
+    <%= link_to @lesson.title, :onclick => 'window.print();return false;' do %>
+      <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+    <% end %>
   </div>
 
 </div>
