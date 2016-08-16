@@ -22,7 +22,7 @@
   <!-- Testing form -->
   <%= simple_form_for @word, url: lesson_word_exposition_path(current_lesson, @word.word), method: :patch do |f| %>
     <%= f.input :term_given_by_student, label: "Enter the term exactly as above:" %><br>
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
   <% end %>
 
 </div>

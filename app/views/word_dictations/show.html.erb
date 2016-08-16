@@ -19,7 +19,7 @@
   <!-- Testing form -->
   <%= simple_form_for @word, url: lesson_word_dictation_path(current_lesson, @word.word), method: :patch do |f| %>
     <%= f.input :dictation_attempt, label: "Spell the sound:" %><br>
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
   <% end %>
 
 </div>
