@@ -10,7 +10,7 @@
     <%= f.input :title %><br>
     <%= f.input :description %><br>
     <%= f.input :subject, :label => "Choose language", :collection => ['Spanish', 'English', 'French', 'German', 'Latin', 'Chinese', 'Russian'], :selected => "Spanish" %><br>
-    <%= f.input :difficulty, :label => "Choose difficulty", :collection => [1,2,3,4,5], :selected => 1 %><br><br>
+    <%= f.input :difficulty, :label => "Choose difficulty", :collection => [1,2,3,4,5,6], :selected => 1 %><br><br>
     <%= f.submit "Create Lesson", class: 'btn btn-primary' %>
   <% end %>
   <br>
