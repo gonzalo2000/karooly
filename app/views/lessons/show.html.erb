@@ -132,7 +132,7 @@
 <% unless enrolled_users.count == 0 %>
   <div class="col-xs-8 col-xs-offset-2 enroll-box">
     <h3>Enrolled users:</h3>
-    <% enrolled_users.each do |user| %>
+    <% enrolled_users.uniq.each do |user| %>
       <ul class="list-square">
         <li>
           <%= user.username %>
