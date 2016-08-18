@@ -103,8 +103,7 @@
     <% @lesson.words.each do |word| %>
       <li>
         <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
-        <%= link_to word.term, word_path(word), class: "gen-text" %> &nbsp 
-        (<%= word.reference %>)
+        <%= link_to word.term, word_path(word), class: "gen-text" %>
       </li>
       <br>
     <% end %>
@@ -119,6 +118,10 @@
   <br>
   
   <div class="print-icon text-right">
+    <mark><%= link_to 'References', references_lesson_path %></mark>
+
+    <br><br>
+
     <%= link_to @lesson, :onclick => 'window.print();return false;' do %>
       <i class="fa fa-print fa-2x" aria-hidden="true"></i>
     <% end %>
