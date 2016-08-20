@@ -122,8 +122,11 @@ ul.list-square {
 }
 
 .enroll-box {
-  background: #fff;
-  padding: 20px 20px 0 20px;
+  background: url('groovepaper.png');
+  padding: 0 20px 0 20px;
+  li {
+    font-family: Monospace, sans-serif;
+  }
 }
 
 .fa-print {
