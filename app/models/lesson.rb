@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
   belongs_to :user
-  has_many :words, dependent: :destroy
+  has_many :words, -> { order('created_at ASC') }, dependent: :destroy 
   has_many :enrollments, dependent: :destroy
   has_many :scrambled_words, through: :enrollments
   has_many :word_expositions, through: :enrollments
