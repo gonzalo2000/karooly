@@ -13,8 +13,13 @@
     <%= f.input :difficulty, :label => "Choose difficulty", :collection => [1,2,3,4,5,6] %><br><br>
     <%= f.submit "Update", class: 'btn btn-primary' %>
   <% end %>
+  
   <br>
-  <%= link_to 'Back', teacher_lesson_path(@lesson), class: 'btn btn-primary'  %>
+
+  <div class="text-right">
+    <%= link_to 'Back to Lesson Admin', teacher_lesson_path(@lesson) %>
+  </div>
+  
 </div>
 
 <br class="clear">

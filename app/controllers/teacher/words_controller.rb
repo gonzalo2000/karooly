@@ -14,6 +14,7 @@ class Teacher::WordsController < ApplicationController
     @word = current_lesson.words.create(word_params)
     if @word.valid?
       current_lesson.reset_activities
+      flash[:notice] = "Word successfully created!"
       redirect_to teacher_lesson_path(current_lesson)
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class Teacher::WordsController < ApplicationController
 
     if @word.update(word_params)
       current_lesson.reset_activities
+      flash[:notice] = "Word successfully updated!"
       redirect_to teacher_lesson_path(current_lesson)
     else
       render :edit, status: :unprocessable_entity
@@ -35,6 +37,7 @@ class Teacher::WordsController < ApplicationController
     @word = Word.find(params[:id])
     @word.destroy
 
+    flash[:notice] = "Word deleted."
     redirect_to teacher_lesson_path(current_lesson)
   end
 

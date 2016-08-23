@@ -17,6 +17,7 @@ class Teacher::LessonsController < ApplicationController
   def create
     @lesson = current_user.lessons.create(lesson_params)
     if @lesson.valid?
+      flash[:notice] = "Lesson created!"
       redirect_to teacher_lesson_path(@lesson)
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class Teacher::LessonsController < ApplicationController
 
   def update
     if lesson.update(lesson_params)
+      flash[:notice] = "Lesson information updated!"
       redirect_to teacher_lesson_path(lesson)
     else
       render :edit, status: :unprocessable_entity
