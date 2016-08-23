@@ -1,6 +1,6 @@
 class Teacher::LessonsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_authorized_for_current_lesson, only: [:show, :edit, :update]
+  before_action :require_authorized_for_current_lesson, only: [:show, :edit, :update, :destroy]
 
   def show
     lesson
