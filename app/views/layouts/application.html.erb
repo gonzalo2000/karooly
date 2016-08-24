@@ -11,7 +11,7 @@
   <meta name="keywords" content="language, teaching, tool, hybrid, teacher, vocabulary, learn, words, concepts">
   <meta name="author" content="Gonzalo Gallardo">
 </head>
-<body>
+<body class="<%= current_page?('/') ? 'landing-page' : 'body' %>">
   <%= render "layouts/navbar" unless @disable_nav %>
 
   <% if notice.present? %>
