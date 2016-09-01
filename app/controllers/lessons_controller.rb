@@ -1,4 +1,6 @@
 class LessonsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @lessons = Lesson.order('created_at DESC').paginate(:page => params[:page], :per_page => 20)
   end
