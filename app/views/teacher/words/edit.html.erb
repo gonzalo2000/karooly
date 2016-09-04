@@ -7,6 +7,9 @@
   <%= simple_form_for @word, url: teacher_lesson_word_path(current_lesson, @word), method: :patch do |f| %>
     <%= f.input :term %><br>
     <%= f.input :reference %><br>
+
+    <p class="text-warning">Please make sure that you either hold the <%= link_to 'usage rights', 'https://support.google.com/websearch/answer/29508?hl=en', target: '_blank' %> of any files you upload to Karooly, or that they are <mark>labelled for reuse with modification</mark> if you gathered them from the Internet (e.g. Google Images) <i class="fa fa-smile-o" aria-hidden="true"></i></p><br>
+    
     <%= f.input :image, input_html: { accept: "image/gif, image/jpeg, image/jpg, image/png" } %><br>
     <%= f.input :sound, input_html: { accept: "audio/mp3, audio/wma, audio/wav, audio/ra, audio/ram, audio/rm, audio/mid, audio/ogg, audio/aac, audio/aif, audio/iff, audio/m3u, audio/m4a, audio/mpa" } %>
     <br>
