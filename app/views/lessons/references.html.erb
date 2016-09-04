@@ -7,7 +7,9 @@
   <h4 class="text-center">by <%= @lesson.user.username %> (<%= @lesson.subject %> <%= @lesson.difficulty %>)</h4>
   <br>
   <p class="text-center gen-text"><%= @lesson.description %></p>
-    
+  <br>
+  <p class="text-center gen-text"><%= @lesson.words.count %> words</p>
+  
   <hr>
 
   <h2 class="text-center">References</h2>
