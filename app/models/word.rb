@@ -13,7 +13,7 @@ class Word < ActiveRecord::Base
   validates :term, presence: true, length: { maximum: 55 }
   validates :reference, presence: true, length: { maximum: 55 }
   validates :image, presence: true
-  validates :sound, presence: true
+  validates :sound, presence: true, file_size: { less_than_or_equal_to: 100.kilobytes }
 
   def previous
     Word.where(["id < ? AND lesson_id = ?", id, lesson_id]).last
