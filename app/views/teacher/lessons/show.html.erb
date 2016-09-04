@@ -17,7 +17,7 @@
   
   <hr>
   
-  <h3>Vocabulary in This Lesson</h3>
+  <h3>This Lesson contains <%= @lesson.words.count %> words</h3>
   <br>
   <div class="text-center">
     <%= link_to 'Add a word', new_teacher_lesson_word_path(@lesson), class: 'btn btn-success btn-lg' %>
