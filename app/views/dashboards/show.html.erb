@@ -16,7 +16,7 @@
 
   <ul>
     <% @user_lessons.each do |lesson| %>
-      <li class="gen-text"><%= link_to lesson.title, teacher_lesson_path(lesson) %>: <%= lesson.description %>
+      <li class="gen-text"><%= link_to lesson.title, teacher_lesson_path(lesson) %> (<%= lesson.subject %> <%= lesson.difficulty %>, <%= lesson.words.count %> words): <%= lesson.description %>
         <br>
         <%= link_to 'Lesson Admin', teacher_lesson_path(lesson), class: 'btn btn-primary btn-sm' %>
         <%= link_to 'Delete Lesson', teacher_lesson_path(lesson), 
