@@ -121,6 +121,10 @@
   
   <div class="print-icon text-right">
     <mark><%= link_to 'References', references_lesson_path %></mark>
+    
+    <br><br>
+
+    <span class="bg-success"><%= link_to 'View enrollments', enrollment_list_lesson_path %></span>
 
     <br><br>
 
@@ -134,23 +138,4 @@
 <br class="clear">
 <br>
 
-<% unless enrolled_users.count == 0 %>
-  <div class="col-xs-8 col-xs-offset-2 enroll-box">
-    <h3>Enrolled users:</h3>
-    <% enrolled_users.uniq.each do |user| %>
-      <ul class="list-square">
-        <li>
-          <%= user.username %>
-          <!-- Check for all activities completed -->
-          <% if completed_scram.include?(user) && completed_expos.include?(user) && completed_dicts.include?(user) && completed_spel.include?(user) %>
-            <i class="fa fa-check-circle" id="check-completed-lesson"></i>
-          <% end %>
-        </li>    
-      </ul>
-    <% end %>
-  </div>
-<% end %>
 
-<div class="clear"></div>
-
-<br>

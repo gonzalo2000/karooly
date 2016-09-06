@@ -1,0 +1,37 @@
+<% content_for :title, @lesson.title + " (enrollments)" %>
+
+<div class="col-xs-8 col-xs-offset-2 enroll-box">
+  <h2 class="text-center"><%= @lesson.title %></h2>
+  <h4 class="text-center">by <%= @lesson.user.username %> (<%= @lesson.subject %> <%= @lesson.difficulty %>)</h4>
+
+  <h3>Enrolled users:</h3>
+
+  <% if enrolled_users.count == 0 %>
+    <p>There are no enrolled users in this lesson.</p>
+  <% end %>
+
+  <% enrolled_users.uniq.each do |user| %>
+    <ul class="list-square">
+      <li>
+        <%= user.username %>
+          <!-- Check for all activities completed -->
+        <% if completed_scram.include?(user) && completed_expos.include?(user) && completed_dicts.include?(user) && completed_spel.include?(user) %>
+          <i class="fa fa-check-circle" id="check-completed-lesson"></i>
+        <% end %>
+      </li>    
+    </ul>
+  <% end %>
+
+  <br>
+
+  <div class="text-center">
+    <%= link_to 'Back to Lesson', lesson_path(@lesson), class: "btn btn-primary"  %>
+  </div>
+
+  <br>
+
+</div>
+
+<div class="clear"></div>
+
+<br>

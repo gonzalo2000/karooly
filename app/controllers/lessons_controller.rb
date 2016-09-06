@@ -13,6 +13,10 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  def enrollment_list
+    @lesson = Lesson.find(params[:id])
+  end
+
   helper_method :completed_expo
   def completed_expo
     lesson = Lesson.find(params[:id])

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :lessons, only: [:index, :show, :references] do 
     member do 
       get 'references'
+      get 'enrollment_list'
     end
     resources :enrollments, only: :create
     resources :word_expositions, only: [:show, :update]
