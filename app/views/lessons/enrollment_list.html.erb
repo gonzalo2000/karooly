@@ -15,7 +15,7 @@
       <li>
         <%= user.username %>
           <!-- Check for all activities completed -->
-        <% if completed_scram.include?(user) && completed_expos.include?(user) && completed_dicts.include?(user) && completed_spel.include?(user) %>
+        <% if activities_completed? %>
           <i class="fa fa-check-circle" id="check-completed-lesson"></i>
         <% end %>
       </li>    

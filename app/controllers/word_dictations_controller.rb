@@ -15,6 +15,7 @@ class WordDictationsController < ApplicationController
         flash[:notice] = "Correct!"
         redirect_to lesson_word_dictation_path(current_lesson, next_dictated.word)
       else
+        current_enrollment.update_and_check_completed(:dictation_completed)
         flash[:notice] = "Dictation activity complete!"
         redirect_to lesson_path(current_lesson)
       end

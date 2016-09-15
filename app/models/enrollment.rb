@@ -52,4 +52,46 @@ class Enrollment < ActiveRecord::Base
   def first_image_spelling
     image_spellings.order(:sequence).first
   end
+
+  def activities_completed?
+    expositions_completed && unscrambled_completed && dictation_completed && image_spelling_completed
+  end
+
+  def mark_completed
+    puts "mark completed"
+    update(:completed => true)
+  end
+
+
+  def check_completed
+    mark_completed if activities_completed?
+  end
+
+  def update_and_check_completed(activity)
+    update(activity => true)
+    puts activity
+    check_completed
+  end
+
+  def self.check_all_completed
+    all.each do |e|
+      if e.word_expositions.all? { |word_expo| word_expo.completed == true }
+        e.update_and_check_completed(:expositions_completed)
+      end
+
+      if e.scrambled_words.all? { |scrambled| scrambled.completed == true }
+        e.update_and_check_completed(:unscrambled_completed)
+      end
+
+      if e.word_dictations.all? { |dictation| dictation.completed == true }
+        e.update_and_check_completed(:dictation_completed)
+      end
+
+      if e.image_spellings.all? { |spelling| spelling.completed == true }
+        e.update_and_check_completed(:image_spelling_completed)
+      end
+    end
+  end
+
+
 end

@@ -15,6 +15,7 @@ class ImageSpellingsController < ApplicationController
         flash[:notice] = "Correct!"
         redirect_to lesson_image_spelling_path(current_lesson, next_spell.word)
       else
+        current_enrollment.update_and_check_completed(:image_spelling_completed)
         flash[:notice] = "Spelling activity complete!"
         redirect_to lesson_path(current_lesson)
       end

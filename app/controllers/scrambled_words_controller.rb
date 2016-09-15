@@ -19,6 +19,7 @@ class ScrambledWordsController < ApplicationController
         flash[:notice] = "Correct!"
         redirect_to lesson_scrambled_word_path(current_lesson, next_scrambled.word)
       else
+        current_enrollment.update_and_check_completed(:unscrambled_completed)
         flash[:notice] = "Scrambled activity complete!"
         redirect_to lesson_path(current_lesson)
       end

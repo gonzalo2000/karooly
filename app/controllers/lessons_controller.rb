@@ -17,6 +17,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  helper_method :activities_completed?
+  def activities_completed?
+    lesson ||= Lesson.find(params[:id])
+    lesson.enrollment_for(current_user).completed
+  end
+
   helper_method :completed_expo
   def completed_expo
     lesson = Lesson.find(params[:id])

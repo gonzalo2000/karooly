@@ -15,6 +15,7 @@ class WordExpositionsController < ApplicationController
         flash[:notice] = "Correct!"
         redirect_to lesson_word_exposition_path(current_lesson, next_exposition.word)
       else
+        current_enrollment.update_and_check_completed(:expositions_completed)
         flash[:notice] = "Review complete!"
         redirect_to lesson_path(current_lesson)
       end 
