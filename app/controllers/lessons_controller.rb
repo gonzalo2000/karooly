@@ -20,7 +20,9 @@ class LessonsController < ApplicationController
   helper_method :activities_completed?
   def activities_completed?
     lesson ||= Lesson.find(params[:id])
-    lesson.enrollment_for(current_user).completed
+    if current_enrollment = lesson.enrollment_for(current_user)
+      current_enrollment.completed
+    end
   end
 
   helper_method :completed_expo
