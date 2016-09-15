@@ -15,7 +15,7 @@
       <li>
         <%= user.username %>
           <!-- Check for all activities completed -->
-        <% if activities_completed? %>
+        <% if activities_completed?(user) %>
           <i class="fa fa-check-circle" id="check-completed-lesson"></i>
         <% end %>
       </li>    
