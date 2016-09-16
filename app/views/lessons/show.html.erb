@@ -46,44 +46,44 @@
     <% end %>
 
     <!-- Display completed activities -->
-    <% if current_enrollment && (completed_expo || completed_unscramble || completed_dictations || completed_spellings) %>
+    <% if current_enrollment && (expositions_complete? || unscrambled_complete? || dictation_complete? || image_spellings_complete?) %>
       <h3>Completed Activities</h3>
 
       <p><i>(Try them again for practice!)</i></p>
 
-      <% if completed_expo %>
+      <% if expositions_complete? %>
         <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-info' %>
       <% end %>
 
-      <% if completed_unscramble %>
+      <% if unscrambled_complete? %>
         <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-info' %>
       <% end %>
 
-      <% if completed_dictations %>
+      <% if dictation_complete? %>
         <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-info' %>
       <% end %>
 
-      <% if completed_spellings %>
+      <% if image_spellings_complete? %>
         <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-info' %>
       <% end %>
     <% end %>
 
     <!-- Display incomplete activities -->
-    <% if current_enrollment && (!completed_expo || !completed_unscramble || !completed_dictations || !completed_spellings) %>
+    <% if current_enrollment && (!expositions_complete? || !unscrambled_complete? || !dictation_complete? || !image_spellings_complete?) %>
       <h3>Activities To Be Completed</h3>
-      <% if !completed_expo %>
+      <% if !expositions_complete? %>
         <%= link_to "Exposition", lesson_word_exposition_path(@lesson, @lesson.words.first), class: 'label label-warning' %> 
       <% end %>
 
-      <% if !completed_unscramble %>
+      <% if !unscrambled_complete? %>
         <%= link_to "Unscramble", lesson_scrambled_word_path(@lesson, current_enrollment.first_scrambled_word.word), class: 'label label-warning' %>
       <% end %>
 
-      <% if !completed_dictations %>
+      <% if !dictation_complete? %>
         <%= link_to "Dictation", lesson_word_dictation_path(@lesson, current_enrollment.first_word_dictation.word), class: 'label label-warning' %>
       <% end %>
 
-      <% if !completed_spellings%>
+      <% if !image_spellings_complete? %>
         <%= link_to "Spelling", lesson_image_spelling_path(@lesson, current_enrollment.first_image_spelling.word), class: 'label label-warning' %> 
       <% end %>
 
