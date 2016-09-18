@@ -20,7 +20,8 @@
 
   <!-- Testing form -->
   <%= simple_form_for @word, url: lesson_scrambled_word_path(current_lesson, @word.word), method: :patch do |f| %>
-    <%= f.input :unscrambled_attempt, label: "Unscramble the above term:" %><br>
+    <%= f.input :unscrambled_attempt, input_html: { id: 'txt' }, label: "Unscramble the above term:" %>
+    <%= render "static_pages/accents" %><br>
     <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
   <% end %>
 

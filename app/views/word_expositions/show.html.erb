@@ -21,7 +21,8 @@
 
   <!-- Testing form -->
   <%= simple_form_for @word, url: lesson_word_exposition_path(current_lesson, @word.word), method: :patch do |f| %>
-    <%= f.input :term_given_by_student, label: "Enter the term exactly as above:" %><br>
+    <%= f.input :term_given_by_student, input_html: { id: 'txt' }, label: "Enter the term exactly as above:" %>
+    <%= render "static_pages/accents" %><br>
     <%= f.button :submit, "Submit", class: 'btn btn-primary' %>
   <% end %>
 

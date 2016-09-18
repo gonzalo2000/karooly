@@ -1,0 +1,36 @@
+<!-- conditional to only display accent toggle for Spanish or German, currently -->
+<% if current_lesson.subject == "Spanish" || current_lesson.subject == "German" %>
+  <button type="button" class="btn btn-secondary accents-btn btn-sm"><i class="fa fa-keyboard-o" aria-hidden="true"></i></button>
+<% end %>
+
+<div class="show-accents initially-hidden">
+
+  <% if current_lesson.subject == "Spanish" %>
+    <button type="button" class="btn btn-secondary btn-sm" id="a-accent">á</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="e-accent">é</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="i-accent">í</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="o-accent">ó</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="u-accent">ú</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="n-accent">ñ</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="u-accent-dier">ü</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="A-accent">Á</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="E-accent">É</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="I-accent">Í</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="O-accent">Ó</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="U-accent">Ú</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="N-accent">Ñ</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="U-accent-dier">Ü</button>
+  <% end %>
+
+  <% if current_lesson.subject == "German" %>
+    <button type="button" class="btn btn-secondary btn-sm" id="a-german">ä</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="o-german">ö</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="u-german">ü</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="eszett-german">ß</button>
+    <br>
+    <button type="button" class="btn btn-secondary btn-sm" id="A-german">Ä</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="O-german">Ö</button>
+    <button type="button" class="btn btn-secondary btn-sm" id="U-german">Ü</button>
+  <% end %>
+
+</div>
