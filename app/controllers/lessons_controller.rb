@@ -60,7 +60,7 @@ class LessonsController < ApplicationController
   helper_method :enrolled_users
   def enrolled_users
     lesson = Lesson.find(params[:id])
-    enrollments = lesson.enrollments
+    enrollments = lesson.enrollments.order('created_at ASC')
     enrolled_users = enrollments.map { |enrollment| enrollment.user }
   end
   
