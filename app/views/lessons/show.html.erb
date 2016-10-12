@@ -105,7 +105,7 @@
     <% @lesson.words.each do |word| %>
       <li>
         <%= image_tag word.image_url(:thumb) if word.image? %> &nbsp
-        <%= link_to word.term, word_path(word), class: "gen-text" %>
+        <%= link_to word.term, word_path(word), class: "gen-text unselectable" %>
       </li>
       <br>
     <% end %>
